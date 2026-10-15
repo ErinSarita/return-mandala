@@ -47,11 +47,11 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,54px);lin
 .lede{max-width:64ch;color:var(--muted);margin:4px 0 0}
 .lede a{color:var(--ink)}
 
-.main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px;align-items:start}
+.main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:start}
 @media (max-width:900px){.main{grid-template-columns:1fr}}
 .stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:grid;gap:14px}
 @media (max-width:900px){.stage{position:static}}
-.svgbox{width:100%;max-width:640px;margin:0 auto;aspect-ratio:1/1;position:relative}
+.svgbox{width:100%;max-width:760px;margin:0 auto;aspect-ratio:1/1;position:relative}
 .coretip{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(-100% - 9%));width:min(250px,70%);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.45;text-align:center;box-shadow:0 6px 20px color-mix(in srgb, var(--ink) 16%, transparent);pointer-events:none;opacity:0;transition:opacity .2s ease}
 .coretip.on{opacity:1}
 .coretip{border-top:5px solid var(--center);background:color-mix(in srgb, var(--center) 18%, var(--surface))}
@@ -1023,7 +1023,10 @@ const PRACTICE = [
 /* ---------- Geometry ---------- */
 // Center out: the seed, the twelve questions of your beginning, then for each right its need, imprint, how it shows
 // now, healing nutrients, and the belief petals; then the ages, the names, and the braid.
-const R = {core:[0,62], q:[68,152], need:[160,216], imp:[222,280], now:[286,344], nut:[350,404], bel:[410,462], age:[474,496], name:516, braid:[536,560]};
+const R = {core:[0,62], q:[68,158], need:[164,220], imp:[226,284], now:[290,348], nut:[354,406], bel:[412,488], age:[496,514], name:530, braid:[544,568]};
+// The twelve questions are a plain ring, so the need ring sits flush around them; from the need outward each ring
+// swells a little more, [inner, outer], so the wheel opens toward the petals.
+const SWELL = {need:[0,8], imp:[8,12], now:[12,16], nut:[16,20]};
 const VB = 578;
 const GAP = 1.2;
 const NS = "http://www.w3.org/2000/svg";
@@ -1047,6 +1050,12 @@ function sector(r0,r1,a0,a1,n,bulge,bulgeIn){
   if(bulgeIn){ const c=P(r0+bulgeIn,(a0+a1)/2), e=P(r0,a0); d+=`Q${f(c[0])} ${f(c[1])} ${f(e[0])} ${f(e[1])}Z`; }
   else d+=arc(r0,a1,a0,0)+"Z";
   return d;
+}
+// a rounder, taller petal: the sides rise from the base and meet in a dome, rather than a point
+function bloom(r0,r1,a0,a1,bulgeIn){
+  const h=r1-r0, w=a1-a0, m=(a0+a1)/2, p=(r,a)=>`${f(P(r,a)[0])} ${f(P(r,a)[1])}`;
+  return `M${p(r0,a0)} C${p(r0+h*0.62,a0-w*0.03)} ${p(r1+2,m-w*0.2)} ${p(r1,m)} C${p(r1+2,m+w*0.2)} ${p(r0+h*0.62,a1+w*0.03)} ${p(r0,a1)} `+
+    (bulgeIn ? `Q${p(r0+bulgeIn,m)} ${p(r0,a0)}Z` : arc(r0,a1,a0,0)+"Z");
 }
 function petal(r0,r1,a0,a1,bulgeIn){
   const m=(a0+a1)/2, w=(a1-a0);
@@ -1073,11 +1082,11 @@ const rA = i => [i*W - W/2, i*W + W/2];
 // short words for the wheel itself; the panel holds the full text
 const WHEEL_TEXT = [
   {need:"Wanted, held, safe", imp:"I don't belong", now:"Distance, life in the head", nut:"Being warmly received", bel:"I have a right to be here"},
-  {need:"Needs met, on their terms", imp:"I must do it alone", now:"Clinging, or needing no one", nut:"Reaching out, receiving", bel:"My needs are welcome"},
-  {need:"Support at their own pace", imp:"Never let them see you're weak", now:"Control, performance, charm", nut:"Accepted when vulnerable", bel:"I can be soft and safe"},
-  {need:"To explore, and say no", imp:"To be close is to be trapped", now:"Duty, guilt, resentment", nut:"Feelings and boundaries", bel:"I can be myself"},
-  {need:"Tenderness and privacy", imp:"I'm not good enough to love", now:"Heart and body kept apart", nut:"Giving and receiving tenderness", bel:"I can love wholeheartedly"},
-  {need:"Patient teaching, friends", imp:"If I fail, I'm worthless", now:"Fear of failing", nut:"Learning playfully", bel:"I learn at my own pace"},
+  {need:"Needs met, their way", imp:"I must do it alone", now:"Clinging, or needing no one", nut:"Reaching out, receiving", bel:"My needs are welcome"},
+  {need:"Support at their pace", imp:"Never show weakness", now:"Control, performance, charm", nut:"Accepted when vulnerable", bel:"I can be soft and safe"},
+  {need:"To explore, and say no", imp:"Close means trapped", now:"Duty, guilt, resentment", nut:"Feelings and boundaries", bel:"I can be myself"},
+  {need:"Tenderness and privacy", imp:"Not good enough to love", now:"Heart and body kept apart", nut:"Giving and receiving tenderness", bel:"I can love wholeheartedly"},
+  {need:"Patient teaching", imp:"If I fail, I'm worthless", now:"Fear of failing", nut:"Learning playfully", bel:"I learn at my own pace"},
   {need:"A voice, and a calling", imp:"My voice doesn't matter", now:"Unsure of my place", nut:"Following what you love", bel:"My voice has a place"}
 ];
 
@@ -1087,9 +1096,11 @@ const RING_TAG={q:"Your beginning", need:"The need", imp:"The imprint", now:"In 
 function cellTip(ring, i){
   const tag=`<span class="ringtag"><i></i>${RING_TAG[ring]}</span>`, more="<span>Tap to read more.</span>";
   if(ring==="q") return `${tag}<b>${STATIONS[i]}</b><i class="tq">${QUESTIONS[i]}</i><span class="tql q">And how it can sound now:</span><i class="tq">${NOW_Q[i]}</i>${more}`;
-  const r=RIGHTS[i];
-  const body = ring==="need" ? r.need.tip : ring==="imp" ? `The decision it can leave: <i>${r.imp.tip}</i>` : ring==="now" ? r.now.tip : ring==="nut" ? r.nut.tip : `<i>${r.bel.tip}</i>`;
-  return `${tag}<b>${r.name}</b>${body}<span>${r.ages}</span>${more}`;
+  // lead with exactly what the wheel says there, then the fuller line when it adds something
+  const r=RIGHTS[i], words=WHEEL_TEXT[i][ring], quoted = ring==="imp"||ring==="bel";
+  const full = ring==="need" ? r.need.tip : ring==="imp" ? r.imp.tip : ring==="now" ? r.now.tip : ring==="nut" ? r.nut.tip : r.bel.tip;
+  const plain=t=>t.replace(/[.“”"]/g,"").trim().toLowerCase();
+  return `${tag}<b>${quoted?`“${words}”`:words}</b>${plain(full)===plain(words)?"":full}<span>${r.name} · ${r.ages}</span>${more}`;
 }
 function addCell(d, ring, i, label, tipAt){
   const c=el("path",{d, class:"cell c-"+ring, fill:`var(${RINGS[ring].color})`, tabindex:"0", role:"button", "aria-label":label});
@@ -1144,26 +1155,23 @@ function draw(){
     const [a0,a1]=rA(i), m=i*W, b0=a0+GAP, b1=a1-GAP, t=WHEEL_TEXT[i];
     // the ages, and the name outside them
     el("path",{d:sector(R.age[0],R.age[1],a0+0.4,a1-0.4,1,0),class:i%2?"mspan alt":"mspan","pointer-events":"none"});
-    arcText((R.age[0]+R.age[1])/2,a0+1,a1-1,r.band,"mlbl",10,1.2,labels);
-    const nm=arcText(R.name,a0+1,a1-1,r.wheel,"seclbl",17,0.6);
+    arcText((R.age[0]+R.age[1])/2,a0+1,a1-1,r.band,"mlbl",11,1.2,labels);
+    const nm=arcText(R.name,a0+1,a1-1,r.wheel,"seclbl",19,0.6);
     nm.addEventListener("click",()=>showRight(i,null,true));
     // center out: need, imprint, now, nutrients, and the belief petal
-    addCell(petal(R.bel[0],R.bel[1],b0,b1,CURVE),"bel",i,`${r.name}: the belief it opens into`,{a:m,r:R.bel[0]+22});
-    addCell(sector(R.nut[0],R.nut[1],b0,b1,1,CURVE,CURVE),"nut",i,`${r.name}: healing nutrients`,{a:m,r:(R.nut[0]+R.nut[1])/2});
-    addCell(sector(R.now[0],R.now[1],b0,b1,1,CURVE,CURVE),"now",i,`${r.name}: in you now`,{a:m,r:(R.now[0]+R.now[1])/2});
-    addCell(sector(R.imp[0],R.imp[1],b0,b1,1,CURVE,CURVE),"imp",i,`${r.name}: the imprint`,{a:m,r:(R.imp[0]+R.imp[1])/2});
-    addCell(sector(R.need[0],R.need[1],b0,b1,1,CURVE,CURVE),"need",i,`${r.name}: the need`,{a:m,r:(R.need[0]+R.need[1])/2});
-    arcText(R.bel[0]+20,b0+4,b1-4,t.bel,"ctext ct-dark",11.5,0.2,labels);
-    arcText((R.nut[0]+R.nut[1])/2+2,b0+2,b1-2,t.nut,"ctext ct-light",11.5,0.2,labels);
-    arcText((R.now[0]+R.now[1])/2+2,b0+2,b1-2,t.now,"ctext ct-light",11.5,0.2,labels);
-    arcText((R.imp[0]+R.imp[1])/2+2,b0+2,b1-2,"“"+t.imp+"”","ctext ct-light ct-belief",12,0.2,labels);
-    arcText((R.need[0]+R.need[1])/2+2,b0+2,b1-2,t.need,"ctext ct-dark",11,0.2,labels);
+    addCell(bloom(R.bel[0],R.bel[1],b0,b1,SWELL.nut[1]),"bel",i,`${r.name}: the belief it opens into`,{a:m,r:R.bel[0]+34});
+    ["nut","now","imp","need"].forEach(k=>addCell(sector(R[k][0],R[k][1],b0,b1,1,SWELL[k][1],SWELL[k][0]),k,i,`${r.name}: ${RING_TAG[k].toLowerCase()}`,{a:m,r:(R[k][0]+R[k][1])/2}));
+    arcText(R.bel[0]+30,b0+5,b1-5,t.bel,"ctext ct-dark ct-belief",14.5,0.2,labels);
+    arcText((R.nut[0]+R.nut[1])/2+3,b0+2,b1-2,t.nut,"ctext ct-light",13,0.1,labels);
+    arcText((R.now[0]+R.now[1])/2+3,b0+2,b1-2,t.now,"ctext ct-light",13,0.1,labels);
+    arcText((R.imp[0]+R.imp[1])/2+3,b0+2,b1-2,"“"+t.imp+"”","ctext ct-light ct-belief",14.5,0.1,labels);
+    arcText((R.need[0]+R.need[1])/2+3,b0+2,b1-2,t.need,"ctext ct-dark",12.5,0.1,labels);
   });
   // the twelve questions of your beginning, around the seed
   STATIONS.forEach((s,k)=>{
     const a0=k*30, a1=a0+30;
-    addCell(sector(R.q[0],R.q[1],a0+GAP,a1-GAP,1,CURVE),"q",k,`${s}: ${QUESTIONS[k]}`,{a:a0+15,r:(R.q[0]+R.q[1])/2});
-    arcText(126,a0+1,a1-1,STATION_SHORT[k],"lbl lbl-dark",10.5,0.4,labels);
+    addCell(sector(R.q[0],R.q[1],a0+GAP,a1-GAP,1,0),"q",k,`${s}: ${QUESTIONS[k]}`,{a:a0+15,r:(R.q[0]+R.q[1])/2});
+    arcText(122,a0+0.6,a1-0.6,STATION_SHORT[k],"lbl lbl-dark",12,0.1,labels);
   });
   svg.appendChild(labels);
   // core
@@ -1509,9 +1517,9 @@ function applySel(){
   const so=document.getElementById("selOutline");
   if(!so) return; so.innerHTML="";
   if(sel.kind==="right"){ const [a0,a1]=rA(sel.i);
-    el("path",{d:sector(R.need[0]-3,R.nut[1]+3,a0+GAP/2,a1-GAP/2,1,CURVE)},so); }
+    el("path",{d:sector(R.need[0]-3,R.nut[1]+3,a0+GAP/2,a1-GAP/2,1,SWELL.nut[1])},so); }
   else if(sel.kind==="q"){ const a0=sel.i*30, a1=a0+30;
-    el("path",{d:sector(R.q[0]-2,R.q[1]+3,a0+GAP/2,a1-GAP/2,1,CURVE)},so); }
+    el("path",{d:sector(R.q[0]-2,R.q[1]+2,a0+GAP/2,a1-GAP/2,1,0)},so); }
 }
 
 /* light and dark switch */
