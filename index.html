@@ -1051,6 +1051,23 @@ function sector(r0,r1,a0,a1,n,bulge,bulgeIn){
   else d+=arc(r0,a1,a0,0)+"Z";
   return d;
 }
+// an annular sector whose corners can be rounded: o.rOut rounds the two outer corners and o.rIn the two inner ones
+// (each only where that edge is a plain arc); o.out and o.in swell the outer and inner edges as sector() does
+function rsector(r0,r1,a0,a1,o){
+  const p=(r,a)=>`${f(P(r,a)[0])} ${f(P(r,a)[1])}`, dA=(rc,r)=>rc/r*180/Math.PI, m=(a0+a1)/2;
+  const ro=o.out?0:(o.rOut||0), ri=o.in?0:(o.rIn||0);
+  let d=`M${p(r0+ri,a0)} L${p(r1-ro,a0)}`;
+  if(ro) d+=` Q${p(r1,a0)} ${p(r1,a0+dA(ro,r1))} `+arc(r1,a0+dA(ro,r1),a1-dA(ro,r1),1)+` Q${p(r1,a1)} ${p(r1-ro,a1)}`;
+  else if(o.out) d+=` L${p(r1,a0)} Q${p(r1+o.out,m)} ${p(r1,a1)}`;
+  else d+=` L${p(r1,a0)} `+arc(r1,a0,a1,1);
+  d+=` L${p(r0+ri,a1)}`;
+  if(ri) d+=` Q${p(r0,a1)} ${p(r0,a1-dA(ri,r0))} `+arc(r0,a1-dA(ri,r0),a0+dA(ri,r0),0)+` Q${p(r0,a0)} ${p(r0+ri,a0)}Z`;
+  else if(o.in) d+=` L${p(r0,a1)} Q${p(r0+o.in,m)} ${p(r0,a0)}Z`;
+  else d+=` L${p(r0,a1)} `+arc(r0,a1,a0,0)+"Z";
+  return d;
+}
+// soft corners: the outer edge of your beginning, and where the need ring first rises from it
+const CORNER = {q:15, need:9};
 // a rounder, taller petal: the sides rise from the base and meet in a dome, rather than a point
 function bloom(r0,r1,a0,a1,bulgeIn){
   const h=r1-r0, w=a1-a0, m=(a0+a1)/2, p=(r,a)=>`${f(P(r,a)[0])} ${f(P(r,a)[1])}`;
@@ -1160,7 +1177,7 @@ function draw(){
     nm.addEventListener("click",()=>showRight(i,null,true));
     // center out: need, imprint, now, nutrients, and the belief petal
     addCell(bloom(R.bel[0],R.bel[1],b0,b1,SWELL.nut[1]),"bel",i,`${r.name}: the belief it opens into`,{a:m,r:R.bel[0]+34});
-    ["nut","now","imp","need"].forEach(k=>addCell(sector(R[k][0],R[k][1],b0,b1,1,SWELL[k][1],SWELL[k][0]),k,i,`${r.name}: ${RING_TAG[k].toLowerCase()}`,{a:m,r:(R[k][0]+R[k][1])/2}));
+    ["nut","now","imp","need"].forEach(k=>addCell(k==="need" ? rsector(R[k][0],R[k][1],b0,b1,{out:SWELL[k][1],rIn:CORNER.need}) : sector(R[k][0],R[k][1],b0,b1,1,SWELL[k][1],SWELL[k][0]),k,i,`${r.name}: ${RING_TAG[k].toLowerCase()}`,{a:m,r:(R[k][0]+R[k][1])/2}));
     arcText(R.bel[0]+30,b0+5,b1-5,t.bel,"ctext ct-dark ct-belief",14.5,0.2,labels);
     arcText((R.nut[0]+R.nut[1])/2+3,b0+2,b1-2,t.nut,"ctext ct-light",13,0.1,labels);
     arcText((R.now[0]+R.now[1])/2+3,b0+2,b1-2,t.now,"ctext ct-light",13,0.1,labels);
@@ -1170,7 +1187,7 @@ function draw(){
   // the twelve questions of your beginning, around the seed
   STATIONS.forEach((s,k)=>{
     const a0=k*30, a1=a0+30;
-    addCell(sector(R.q[0],R.q[1],a0+GAP,a1-GAP,1,0),"q",k,`${s}: ${QUESTIONS[k]}`,{a:a0+15,r:(R.q[0]+R.q[1])/2});
+    addCell(rsector(R.q[0],R.q[1],a0+GAP,a1-GAP,{rOut:CORNER.q}),"q",k,`${s}: ${QUESTIONS[k]}`,{a:a0+15,r:(R.q[0]+R.q[1])/2});
     arcText(122,a0+0.6,a1-0.6,STATION_SHORT[k],"lbl lbl-dark",12,0.1,labels);
   });
   svg.appendChild(labels);
@@ -1517,9 +1534,9 @@ function applySel(){
   const so=document.getElementById("selOutline");
   if(!so) return; so.innerHTML="";
   if(sel.kind==="right"){ const [a0,a1]=rA(sel.i);
-    el("path",{d:sector(R.need[0]-3,R.nut[1]+3,a0+GAP/2,a1-GAP/2,1,SWELL.nut[1])},so); }
+    el("path",{d:rsector(R.need[0]-3,R.nut[1]+3,a0+GAP/2,a1-GAP/2,{out:SWELL.nut[1],rIn:CORNER.need+3})},so); }
   else if(sel.kind==="q"){ const a0=sel.i*30, a1=a0+30;
-    el("path",{d:sector(R.q[0]-2,R.q[1]+2,a0+GAP/2,a1-GAP/2,1,0)},so); }
+    el("path",{d:rsector(R.q[0]-2,R.q[1]+2,a0+GAP/2,a1-GAP/2,{rOut:CORNER.q+2})},so); }
 }
 
 /* light and dark switch */
