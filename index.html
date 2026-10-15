@@ -14,18 +14,18 @@
 :root{
   --bg:#F7F2F7; --surface:#FFFFFF; --ink:#3E2747; --muted:#76607F; --line:#E4D7E7;
   --core:#6F4E92; --child:#EDD9F2; --mother:#C69BD3; --circle:#AE8BCB; --support:#9270B6; --practice:#6F4E92; --moon:#DCC8E3;
-  --on-dark:#FFFFFF; --on-light:#3E2747; --today:#3E2747; --gold:#C9993A; --fullmoon:#FFFFFF; --seed:#FCF7FD; --center:#E2C6EB; --month:#D8BEE3; --month2:#E8D8EE;
+  --on-dark:#FFFFFF; --on-light:#3E2747; --today:#3E2747; --gold:#C9993A; --fullmoon:#FFFFFF; --seed:#FCF7FD; --center:#E2C6EB; --month:#D8BEE3; --month2:#E8D8EE; --heal:#EBBDD0;
   --display:"Marcellus", "Cormorant Garamond", Georgia, serif;
   --body:"Mulish", "Avenir Next", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#1F1725; --surface:#2A2031; --ink:#EFE4F2; --muted:#B8A2C1; --line:#413249;
   --core:#6F4E92; --child:#DCC2E6; --mother:#B489C4; --circle:#9C7BBC; --support:#8463AA; --practice:#664690; --moon:#7C6387;
-  --on-dark:#FFFFFF; --on-light:#2A1A30; --today:#EFE4F2; --gold:#E0B65E; --fullmoon:#FBF4FC; --seed:#9E721E; --center:var(--child); --month:#C7A5D5; --month2:#DAC3E4; color-scheme:dark }}
+  --on-dark:#FFFFFF; --on-light:#2A1A30; --today:#EFE4F2; --gold:#E0B65E; --fullmoon:#FBF4FC; --seed:#9E721E; --center:var(--child); --month:#C7A5D5; --month2:#DAC3E4; --heal:#D99AB6; color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#1F1725; --surface:#2A2031; --ink:#EFE4F2; --muted:#B8A2C1; --line:#413249;
   --core:#6F4E92; --child:#DCC2E6; --mother:#B489C4; --circle:#9C7BBC; --support:#8463AA; --practice:#664690; --moon:#7C6387;
-  --on-dark:#FFFFFF; --on-light:#2A1A30; --today:#EFE4F2; --gold:#E0B65E; --fullmoon:#FBF4FC; --seed:#9E721E; --center:var(--child); --month:#C7A5D5; --month2:#DAC3E4; color-scheme:dark }
+  --on-dark:#FFFFFF; --on-light:#2A1A30; --today:#EFE4F2; --gold:#E0B65E; --fullmoon:#FBF4FC; --seed:#9E721E; --center:var(--child); --month:#C7A5D5; --month2:#DAC3E4; --heal:#D99AB6; color-scheme:dark }
 
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -258,6 +258,53 @@ header.top{padding-right:150px}
 .chips button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:3px 11px;cursor:pointer}
 .chips button:hover,.chips button:focus-visible{border-color:var(--ink);outline:none}
 .reflect{margin:0;padding-left:20px;display:grid;gap:6px;font-family:var(--display);font-size:17px}
+.ctext{font-family:var(--body);font-weight:600;pointer-events:none}
+.ct-light{fill:var(--on-dark)} .ct-dark{fill:var(--on-light)}
+.ct-belief{font-family:var(--display);font-weight:400}
+.rightnav{display:flex;flex-wrap:wrap;gap:6px;margin-top:-8px}
+.rightnav button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--muted);border-radius:999px;padding:3px 11px;cursor:pointer}
+.rightnav button[aria-current="true"]{color:var(--ink);border-color:var(--ink)}
+.rightnav button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.phasehead .eyebrow{margin-bottom:4px}
+ul.beliefs{list-style:none;padding:0;display:grid;gap:4px;font-family:var(--display);font-size:18px}
+ul.beliefs li::before{content:"\201C"} ul.beliefs li::after{content:"\201D"}
+ul.beliefs.good{color:var(--ink)}
+ul.practices{display:grid;gap:10px}
+.why{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.rnext{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.group{display:grid;gap:10px}
+.group h3{font-family:var(--display);font-weight:400;font-size:24px;margin:10px 0 0}
+.group h3 small{font-family:var(--body);font-size:13px;color:var(--muted);margin-left:6px}
+.group > .about{margin:0;color:var(--muted);font-size:14px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;scroll-margin-top:16px}
+.qcard[open]{border-color:var(--ink)}
+.qcard summary{cursor:pointer;padding:12px 16px;display:grid;gap:1px;list-style:none}
+.qcard summary::-webkit-details-marker{display:none}
+.qcard summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:14px}
+.qn{font-family:var(--display);font-size:21px}
+.qq{font-family:var(--display);font-size:16px;color:var(--ink)}
+.qw{font-size:13px;color:var(--muted)}
+.qbody{display:grid;gap:14px;padding:0 16px 16px}
+.qbody ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.qbody h4{margin:4px 0 0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.window{display:grid;border-radius:12px;overflow:hidden;border:1px solid var(--line);text-align:center}
+.window div{display:grid;gap:2px;padding:12px}
+.window b{font-family:var(--display);font-weight:400;font-size:18px}
+.window span{font-size:13.5px;color:var(--muted)}
+.w-high{background:color-mix(in srgb, var(--heal) 45%, var(--surface))}
+.w-in{background:color-mix(in srgb, var(--child) 60%, var(--surface));padding-block:22px!important}
+.w-low{background:color-mix(in srgb, var(--circle) 35%, var(--surface))}
+ol.ladder,ol.steps{margin:0;padding-left:22px;display:grid;gap:6px}
+.checkin{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.checkin button{font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:10px 8px;cursor:pointer;display:grid;gap:2px;text-align:center}
+.checkin button b{font-family:var(--display);font-weight:400;font-size:18px}
+.checkin button span{font-size:12.5px;color:var(--muted)}
+.checkin button[aria-pressed="true"],.checkin button:hover,.checkin button:focus-visible{border-color:var(--ink);outline:none}
+.ck-high{background:color-mix(in srgb, var(--heal) 30%, var(--surface))!important}
+.ck-low{background:color-mix(in srgb, var(--circle) 25%, var(--surface))!important}
+.ck-ok{background:color-mix(in srgb, var(--child) 45%, var(--surface))!important}
+.pause h4{margin:6px 0 0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:420px){.checkin{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){.cell{transition:none}}
 </style>
 <script>
@@ -274,16 +321,16 @@ try{ var t=localStorage.getItem("rm-theme"); if(t==="light"||t==="dark") documen
     <button class="pausebtn" type="button" id="pausebtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>Pause</button>
     <div class="eyebrow">Prenatal &amp; Perinatal Healing</div>
     <h1>The Return Mandala</h1>
-    <p class="lede">A map for returning to your own earliest story, read from the center out. At the center is the child you were, from your conception through your birth and your first hour. Around that child is you, now: the adult who can hold them. Around you is your circle of support, and around them the guide, who names the possible imprints of each month, the question the child you were may have begun to ask, and how it can sound in you today. On the outer petals are practices for meeting and healing the child you were. A companion to <a href="https://erinsarita.github.io/prenatal-mandala/">The Pregnancy and Birth Mandala</a>, turned around: here the child has grown up, and the work is yours.</p>
+    <p class="lede">A map for returning to your own earliest story, and to the passages of growing up. At the center is the child you were, with the twelve questions of your beginning, from conception through your first hour. Around them turn seven rights, the needs of each stage of growing up, after Robin Grille's developmental rites of passage, from the right to exist, which begins in the womb, to the right to a voice of your own. Read out from the center along any right, from what the child needed, to how it can show in you now, to what heals it. A companion to <a href="https://erinsarita.github.io/prenatal-mandala/">The Pregnancy and Birth Mandala</a>, turned around: here the child has grown up, and the work is yours.</p>
   </header>
 
   <div class="main">
     <div class="stage">
-      <div class="svgbox"><div class="moontip" id="moontip" role="status"></div><div class="coretip" id="coretip" aria-hidden="true"><svg class="coreicon" viewBox="-68 -68 136 136" aria-hidden="true"><circle r="66" fill="var(--center)"/><g fill="none" stroke="var(--seed)" stroke-width="5"><path d="M0 0A28 28 0 0 1 0.0 -28.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 24.2 -14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 24.2 14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 0.0 28.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 -24.2 14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 -24.2 -14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><circle r="28"/><circle cx="0.0" cy="-28.0" r="28"/><circle cx="24.2" cy="-14.0" r="28"/><circle cx="24.2" cy="14.0" r="28"/><circle cx="0.0" cy="28.0" r="28"/><circle cx="-24.2" cy="14.0" r="28"/><circle cx="-24.2" cy="-14.0" r="28"/><circle r="56"/></g></svg><b>The child you were</b>The Seed of Life: your life beginning, growing, and expanding. Everything on this wheel circles around them.<span>Tap to read more.</span></div><svg id="m" viewBox="-578 -578 1156 1156" role="group" aria-label="The Return Mandala"></svg></div>
+      <div class="svgbox"><div class="moontip" id="moontip" role="status"></div><div class="coretip" id="coretip" aria-hidden="true"><svg class="coreicon" viewBox="-68 -68 136 136" aria-hidden="true"><circle r="66" fill="var(--center)"/><g fill="none" stroke="var(--seed)" stroke-width="5"><path d="M0 0A28 28 0 0 1 0.0 -28.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 24.2 -14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 24.2 14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 0.0 28.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 -24.2 14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><path d="M0 0A28 28 0 0 1 -24.2 -14.0A28 28 0 0 1 0 0Z" fill="var(--seed)" stroke="none"/><circle r="28"/><circle cx="0.0" cy="-28.0" r="28"/><circle cx="24.2" cy="-14.0" r="28"/><circle cx="24.2" cy="14.0" r="28"/><circle cx="0.0" cy="28.0" r="28"/><circle cx="-24.2" cy="14.0" r="28"/><circle cx="-24.2" cy="-14.0" r="28"/><circle r="56"/></g></svg><b>The child you were</b>The Seed of Life, ringed by the twelve questions of your beginning. Everything on this wheel grows out from them.<span>Tap to read more.</span></div><svg id="m" viewBox="-578 -578 1156 1156" role="group" aria-label="The Return Mandala"></svg></div>
       <form class="datebar" id="dateform" autocomplete="off">
         <label for="bday" id="datelabel">Your birthday</label>
         <input type="date" id="bday" name="bday">
-        <button class="btn" type="submit">Add your moons</button>
+        <button class="btn" type="submit">Count your moons</button>
         <button class="btn" type="button" id="clear" hidden>Clear</button>
         <details class="birthdet" id="birthdet">
           <summary>Birth details <span>optional</span></summary>
@@ -298,10 +345,10 @@ try{ var t=localStorage.getItem("rm-theme"); if(t==="light"||t==="dark") documen
             <label id="blabor-l"><span id="blabor-t">Labor began</span><input type="datetime-local" id="blabor"></label>
             <label><span id="bbirth-t">The time you were born</span><input type="time" id="btime"></label>
             <div class="bdbtns"><button class="btn" type="button" id="bsave">Show on the wheel</button><button class="btn" type="button" id="bclear" hidden>Clear birth details</button></div>
-            <p class="bnote">Whatever you know, and nothing you do not. Without a due date, your birth is placed at forty weeks; with one, it falls where it really did, early or late. Your birth details stay in this browser and are not sent anywhere.</p>
+            <p class="bnote">Whatever you know, and nothing you do not. With a due date, your birth is counted where it really fell, early or late, and each station of Your beginning shows its own dates. Your birth details stay in this browser and are not sent anywhere.</p>
           </div>
         </details>
-        <p class="status" id="status">Enter your birthday to see the full moons of your own time in the womb, and where your birth fell.</p>
+        <p class="status" id="status">Enter your birthday to count the full moons of your own time in the womb, and the moon you were born under.</p>
         <p class="rule">Counting back from a birthday assumes a full-term birth of forty weeks from your mother's last period. If you know your due date, add it under Birth details for a truer picture.</p>
       </form>
       <div class="ringkey" id="ringkey" aria-label="Rings"></div>
@@ -309,32 +356,31 @@ try{ var t=localStorage.getItem("rm-theme"); if(t==="light"||t==="dark") documen
 
     <div class="panel">
       <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="rightnav" id="rightnav" aria-label="The seven rights" hidden></div>
       <div id="panel" aria-live="polite"></div>
     </div>
   </div>
 
   <section class="about" id="about">
     <h2>About this mandala</h2>
-    <p>A mandala is a circle organized around a center. This one is a companion to The Pregnancy and Birth Mandala, which keeps the baby at the center so that a mother, a partner, and an educator can welcome her well. Here the same map is turned around. The baby has grown up. You may be thinking about becoming a parent, or not; you may have noticed patterns in yourself that seem older than your memory. Either way, the work of this wheel is yours: to return to your own beginning, understand it, and meet the child you were with the care that every child deserves.</p>
+    <p>A mandala is a circle organized around a center. This one is a companion to The Pregnancy and Birth Mandala, which keeps the baby at the center so that a mother, a partner, and an educator can welcome her well. Here the same center is turned around. The baby has grown up. You may be thinking about becoming a parent, or not; you may have noticed patterns in yourself that seem older than your memory. Either way, the work of this wheel is yours: to return to your beginning and to the passages of growing up, understand what they left, and meet the child you were with the care that every child deserves.</p>
     <h3>How it is built</h3>
-    <p>The circle begins at the top, with the first day of your mother's last period, and moves clockwise. Three quarters are the trimesters, three months each. The last quarter is your birth: labor, the birth itself, and your first hour. The months line up with those of The Pregnancy and Birth Mandala, so the two can be laid side by side.</p>
-    <p>The rings line up month by month, so reading straight out from any slice shows, at the same moment, the child you were, how it may echo in you now, how your circle can hold you, and what a guide would bring up. The practices on the outer petals are gathered by quarter.</p>
-    <p>The rings are also layers of support: each holds the one inside it. You hold the child you were. Your circle holds you. Their own support holds them. Castellino taught that no one should hold it all alone, and that is as true of healing as of birth (Castellino, in White, 2013).</p>
-    <p>Around the petals, the time wheel holds every marker of time. Enter your birthday and it marks the full and new moons of your own time in the womb, the moon you were born under, and, if you know them, your due date and the details of your birth.</p>
-    <h3>Attachment</h3>
-    <p>The Attachment tab sets the four adult attachment styles beside the wheel, with the months the field links to each. Attachment research is among the most measured in psychology: the first years of care shape how a person expects closeness to go. The links to particular months of pregnancy and birth are the field's view, offered as possible early roots rather than findings. Most hopeful of all is earned security: adults who make sense of a hard start can become secure.</p>
+    <p>At the center is the Seed of Life, ringed by the twelve questions of your beginning, from conception through your first hour: "Am I wanted?", "Am I welcome?", and the rest. They are the same twelve as The Pregnancy and Birth Mandala, named here by the need each one asks about, and they are the core first imprint the wheel grows from.</p>
+    <p>Around them turn seven rights, after Robin Grille's developmental rites of passage, which grow from the body-oriented psychotherapy of Wilhelm Reich and Alexander Lowen: the rights to exist, to need, to have support, to freedom, to love, to playful learning, and to an opinion, a vocation, and sexual autonomy. Each is a stage every child passes through, from the womb to the early twenties. Grille's ages overlap and shift between his own versions, because these are layers laid down over one another, not steps left behind. The first right begins at the top, and the last returns to it.</p>
+    <p>Reading straight out from the center along any right moves from the child's need, to the imprint and the decision it can leave, to how it can show in you now, to the healing nutrients that restore it, to the belief it can open into. The panel adds three more layers from other sources: gathering the theme across your life, and counteraction and proaction, from William Emerson's somatic work; what tips the scale, from the science of resilience; and why each practice helps, from Candace Pert's work on the chemistry of feeling.</p>
+    <p>At the very edge, a braid of three strands, the child you were, you now, and the support around you, holds the mandala together.</p>
+    <h3>Not a timeline</h3>
+    <p>Healing rarely goes in order. The same question can begin in the womb, come round again at five or fifteen, and show up today in a relationship or at work. Come in wherever you recognize yourself, and follow the thread in either direction: inward to its earliest root, or outward to what heals it. Emerson found that imprints gather by theme across a life, so that a single moment is rarely the whole story; each right asks you to gather its theme for that reason.</p>
+    <h3>Attachment, and the body</h3>
+    <p>The Attachment tab sets the four adult attachment styles beside the wheel. Attachment research is among the most measured in psychology; the links drawn to particular rights and moments of your beginning are the field's view. The body tab explains implicit memory, the window of tolerance, the ladder of nervous-system states, stress and resilience, and the chemistry of feeling, and how to walk the wheel safely, in small doses.</p>
+    <h3>What is measured, and what is the field's view</h3>
+    <p>This mandala draws on two kinds of sources, and says which is which. Some are measured science with decades behind them: attachment, implicit memory, newborns' recognition of their mother's voice, the window of tolerance as a clinical model, and the science of stress and resilience. Others are frameworks that pre- and perinatal psychology and body-oriented therapy work within: that particular birth events leave particular imprints, that developmental stages carry particular rights, that the body stores emotional memory. These are offered with care as possibilities, worth holding more loosely than the research.</p>
     <h3>Going gently</h3>
-    <p>This is reflective work, and it can stir strong feelings. Go one month at a time, and stop whenever you need to. The Pause at the top of the page is always there. You do not need to know the facts of your beginning to begin: many people cannot ask their parents, or should not, and the story you have is enough. If what surfaces is heavy, such as trauma, loss, or abuse, do this work alongside a trauma-informed therapist rather than alone. This mandala is for reflection and education. It is not therapy, and it does not diagnose.</p>
-    <ul class="refs">
-      <li><b>Pace yourself.</b> One month, one question, one practice. Castellino's Pause applies here: slowing down is part of the work, not a delay.</li>
-      <li><b>Hold your parents with compassion, and yourself too.</b> Naming what happened is not blame. Most parents did what they could with what they had, and what you felt was still real.</li>
-      <li><b>Rupture and repair.</b> What matters most after a hard moment is the return. That is as true between you and the child you were as between a parent and a baby (Strange).</li>
-      <li><b>Make meaning.</b> Telling your story and being heard helps a hard beginning settle into one you can understand. If distress lingers, such as flashbacks, numbness, or avoidance, reach for trauma-informed support (Seng and Taylor).</li>
-    </ul>
+    <p>This is reflective work, and it can stir strong feelings. Go one ring at a time, and stop whenever you need to. The Pause at the top of the page is always there. You do not need to know the facts of your beginning to begin: many people cannot ask their parents, or should not, and the story you have is enough. Reflection and the practices here are safe to do on your own; regression and deep body work belong with a trained guide, and if what surfaces is heavy, such as trauma, loss, or abuse, do this work alongside a trauma-informed therapist. This mandala is for reflection and education. It is not therapy, and it does not diagnose.</p>
     <h3>Your own moons</h3>
-    <p>Many traditions count a pregnancy as ten moons, and the forty weeks span nine or ten full moons. Entering your birthday marks the real full and new moons of the months you were carried, and names the phase of the moon on the day you were born. Tap or hover over a moon to see its date and how far along you were.</p>
+    <p>Many traditions count a pregnancy as ten moons. Enter your birthday below the wheel and it counts the full moons of the months you were carried, and names the phase of the moon on the day you were born. With your due date too, each station of Your beginning shows its own dates.</p>
     <h3>A note on language</h3>
-    <p>The lines on what you may have sensed, and the possible imprints, are written with care. They draw on research and on the experience of the field's pioneers, and they describe possibilities, not certainties. Every person and every beginning is its own. Your mother here means the person who carried you; if you were adopted or born through surrogacy, that is your birth or gestational mother, and the people who raised you belong to the later chapters of your story, which matter just as much.</p>
+    <p>Every person and every beginning is its own, and the lines here describe possibilities, not certainties. Your mother here means the person who carried you; if you were adopted or born through surrogacy, that is your birth or gestational mother, and the people who raised you belong to the later rights, which matter just as much. Grille's model is described in our own words; for his full account, see his work.</p>
     <h3>References</h3>
     <ol class="refs">
       <li>Ainsworth, M. D. S., Blehar, M. C., Waters, E., &amp; Wall, S. (1978). <i>Patterns of Attachment</i>. Erlbaum.</li>
@@ -342,16 +388,28 @@ try{ var t=localStorage.getItem("rm-theme"); if(t==="light"||t==="dark") documen
       <li>Bowlby, J. (1969). <i>Attachment and Loss: Vol. 1. Attachment</i>. Basic Books.</li>
       <li>Brennan, K. A., Clark, C. L., &amp; Shaver, P. R. (1998). Self-report measurement of adult attachment: An integrative overview. In J. A. Simpson &amp; W. S. Rholes (Eds.), <i>Attachment Theory and Close Relationships</i> (pp. 46–76). Guilford.</li>
       <li>Buckley, S. J. (2003). Undisturbed birth: Nature's blueprint for ease and ecstasy. <i>Journal of Prenatal &amp; Perinatal Psychology &amp; Health, 17</i>(4), 261–288.</li>
-      <li>Chamberlain, D. <i>The Sentient Prenate</i>. Emerson, W. <i>The Elephant in the Birthing Room</i>.</li>
+      <li>Chamberlain, D. <i>The Sentient Prenate</i>.</li>
+      <li>Dana, D. (2018). <i>The Polyvagal Theory in Therapy</i>. Norton.</li>
       <li>DeCasper, A. J., &amp; Fifer, W. P. (1980). Of human bonding: Newborns prefer their mothers' voices. <i>Science, 208</i>(4448), 1174–1176.</li>
-      <li>Fischbein, S. J., &amp; Freeze, R. (2018). Breech birth at home: Outcomes of 60 breech and 109 cephalic planned home and birth center births. <i>BMC Pregnancy and Childbirth, 18</i>, 397.</li>
+      <li>Emerson, W. R. (2002). Somatotropic therapy. <i>Journal of Heart-Centered Therapies, 5</i>(2), 65–90.</li>
+      <li>Grille, R. (2005). <i>Parenting for a Peaceful World</i>. Longueville Media.</li>
+      <li>Grille, R. (2019). <i>Inner Child Journeys</i>. robingrille.com.</li>
+      <li>Grossman, P. (2023). Fundamental challenges and likely refutations of the five basic premises of the polyvagal theory. <i>Biological Psychology, 180</i>, 108589.</li>
       <li>Ham, J. T., Jr., &amp; Klimo, J. (2000). Fetal awareness of maternal emotional states during pregnancy. <i>Journal of Prenatal &amp; Perinatal Psychology &amp; Health, 15</i>(2), 118–145.</li>
+      <li>Heller, L., &amp; LaPierre, A. (2012). <i>Healing Developmental Trauma</i>. North Atlantic Books.</li>
       <li>Kroll-Desrosiers, A. R., et al. (2017). Association of peripartum synthetic oxytocin administration and depressive and anxiety disorders within the first postpartum year. <i>Depression and Anxiety, 34</i>(2), 137–146.</li>
+      <li>Levine, P. A. (2010). <i>In an Unspoken Voice</i>. North Atlantic Books.</li>
       <li>Main, M., &amp; Solomon, J. (1990). Procedures for identifying infants as disorganized/disoriented during the Ainsworth Strange Situation. In M. T. Greenberg, D. Cicchetti, &amp; E. M. Cummings (Eds.), <i>Attachment in the Preschool Years</i> (pp. 121–160). University of Chicago Press.</li>
       <li>Nathanielsz, P. W. The origin of health and disease. In <i>Life in the Womb</i>.</li>
+      <li>National Scientific Council on the Developing Child. (2015). <i>Supportive Relationships and Active Skill-Building Strengthen the Foundations of Resilience</i> (Working Paper 13). Center on the Developing Child, Harvard University.</li>
+      <li>Ogden, P., Minton, K., &amp; Pain, C. (2006). <i>Trauma and the Body</i>. Norton.</li>
+      <li>Pert, C. B. (1997). <i>Molecules of Emotion</i>. Scribner.</li>
+      <li>Pert, C. B., &amp; Snyder, S. H. (1973). Opiate receptor: Demonstration in nervous tissue. <i>Science, 179</i>(4077), 1011–1014.</li>
+      <li>Porges, S. W. (2011). <i>The Polyvagal Theory</i>. Norton.</li>
       <li>Raffai, J. (2021). The impact of parental conflict on the intrauterine realm. In <i>Handbook of Prenatal and Perinatal Psychology</i>.</li>
       <li>Roisman, G. I., Padrón, E., Sroufe, L. A., &amp; Egeland, B. (2002). Earned-secure attachment status in retrospect and prospect. <i>Child Development, 73</i>(4), 1204–1219.</li>
       <li>Seng, J., &amp; Taylor, J. (2015). <i>Trauma Informed Care in the Perinatal Period</i>. Dunedin Academic Press.</li>
+      <li>Siegel, D. J. (1999). <i>The Developing Mind</i>. Guilford.</li>
       <li>Siegel, D. J., &amp; Hartzell, M. (2003). <i>Parenting from the Inside Out</i>. Tarcher/Putnam.</li>
       <li>Strange, K. Simple Tools for Mothers.</li>
       <li>Verny, T. R. Birth and the origins of violence: One perspective.</li>
@@ -366,37 +424,298 @@ try{ var t=localStorage.getItem("rm-theme"); if(t==="light"||t==="dark") documen
 (function(){
 "use strict";
 
-/* ---------- Content ---------- */
+/* ---------- Content: the seven rights ----------
+   The wheel follows Robin Grille's developmental rights, his rites of passage (Parenting for a Peaceful World;
+   Inner Child Journeys, 2019), which grow from the body-oriented psychotherapy of Reich and Lowen. Everything here is
+   in our own words. Each right holds: the child's need, the imprint and the decision it can leave, how it can show
+   in you now, healing nutrients, and the belief it can open into; plus, from Emerson, gathering the theme across a
+   life and proaction and counteraction, and from the Harvard resilience science, what tips the scale. */
 const RINGS = {
-  child:   {name:"The child you were", color:"--child", about:"The center of the map. It follows the child you were through each month of your time in the womb, through your birth and your first hour: what was forming in you, and what you may have been taking in from your world."},
-  mother:  {name:"You, now", color:"--mother", about:"The adult who holds that child today. Each month, how what you lived through then may echo in you now, in your patterns, your relationships, and your body, and questions for exploring your own story."},
-  circle:  {name:"Your circle of support", color:"--circle", about:"Ray Castellino taught that everyone needs at least two layers of support, and that supporters need support too (Castellino, in White, 2013). That holds for this work as much as for a birth. Each month, this ring shows how others can support you, the child you were, and the people who hold you.",
-   more:`<figure class="layers">
-      <svg viewBox="-112 -112 224 224" role="img" aria-label="Nested circles: a guide holds your circle, your circle holds you, you hold the child you were">
-        <g stroke="var(--bg)" stroke-width="5"><circle r="110" fill="var(--support)"/><circle r="81" fill="var(--circle)"/><circle r="53" fill="var(--mother)"/><circle r="26" fill="var(--child)"/></g>
-        <text y="-95.5" class="lt">Guide</text><text y="-67" class="lt">Friends</text><text y="-39.5">You</text><text y="1">Child</text>
-      </svg>
-      <figcaption>An example of two layers of support around the child you were.</figcaption>
-    </figure>
-    <p class="more">Support can look like a friend who listens, a partner who holds you, a therapist or a pre- and perinatal practitioner, a group doing the same work, or time in a place where you feel safe.</p>`},
-  support: {name:"The guide", color:"--support", about:"What a pre- and perinatal guide would bring up for each month: the possible imprint, the question the child you were may have begun to ask, how that question can sound in an adult, and how it links to attachment.",
-   more:`<p class="more"><b>Possible imprints and the child's question.</b> Each month names possible imprints and a question that may have begun to emerge for you then, such as "Am I wanted?" These are the same twelve questions as in The Pregnancy and Birth Mandala. They began to emerge; they were not settled. Everything you lived through afterward kept answering them, and the answers can still change.</p>`},
-  practice:{name:"Healing practices", color:"--practice", about:"Simple practices for meeting the child you were, adapted from Karen Strange's Simple Tools for Mothers and Ray Castellino's principles, so that the tools a mother might use with her baby become tools you can use with yourself. Grounding and Pacing practice the Pause; a hand on your heart practices Touch and Attention (Castellino, in White, 2013)."}
+  q:    {name:"Your beginning", color:"--child", about:"At the heart of the wheel are the twelve questions of your beginning, from conception through your first hour: the core first imprint the whole wheel grows from. They are the same twelve as The Pregnancy and Birth Mandala, here as the earliest layer of the Right to Exist."},
+  need: {name:"The need", color:"--mother", about:"What the child needed at this stage of growing up."},
+  imp:  {name:"The imprint", color:"--circle", about:"How that need can go unmet, and the decision a child may make about it: a belief that forms before or just as words arrive."},
+  now:  {name:"In you now", color:"--support", about:"How the imprint can show in an adult, in patterns, relationships, and the body."},
+  nut:  {name:"Healing nutrients", color:"--practice", about:"What restores it in an adult: the experiences that give, now, what the child missed then."},
+  bel:  {name:"The belief it opens into", color:"--heal", about:"The outer petals: the healthy belief each right can blossom into, once it is met."}
 };
 
-const PHASES = [
-  {id:"t1", name:"First trimester", short:"First", sub:"Weeks 1–13", days:[0,90],
-   intro:"Your beginning, from conception to taking root. You formed at a remarkable pace, often before anyone knew you were there, while the news of you landed in the people around you. The questions of this quarter are about being wanted and welcome, and the work is welcoming yourself."},
-  {id:"t2", name:"Second trimester", short:"Second", sub:"Weeks 14–27", days:[91,188],
-   intro:"The middle, when you began to move, to hear, and to reach out. Your world arrived as rhythm, sound, and the emotional climate of the home. The questions here are about being met and whether the world is kind, and the work is learning to meet yourself."},
-  {id:"t3", name:"Third trimester", short:"Third", sub:"Weeks 28–40", days:[189,279],
-   intro:"The ripening, as space grew tight and birth drew near. You came to know the voices around you and felt the fear or the calm in them. The questions here are about trust, holding, and time, and the work is slowing down and letting yourself be held."},
-  {id:"birth", name:"Birth", short:"Birth", sub:"Labor · birth · first hour", days:null,
-   intro:"The threshold: your labor, your birth, and your first hour. How you came through and how you were met may echo in how you meet beginnings, effort, and closeness. The questions here are about making it through and belonging, and the work is telling yourself the story of your arrival with a kinder ending."}
+// Grille's ages overlap and differ between his own versions: these stages are layers, laid down over one another, not steps.
+const RIGHTS = [
+  {key:"exist", name:"The Right to Exist", wheel:"The Right to Exist", short:"Exist", theme:"Connectedness", ages:"In the womb, birth, and the first months", band:"WOMB TO 3 MONTHS",
+   intro:"The first and deepest layer: whether it is safe and good to be here at all. Before there is any sense of a separate self, a baby takes in how they are received as if it were the truth about their own being. Your twelve questions live here, at the center of the wheel.",
+   need:{tip:"To be wanted, held with care, and safe.", items:["To be wanted and warmly received","To be held sensitively, skin to skin","To feel safe","To be seen, with loving eye contact","To be welcomed as someone, not something"]},
+   imp:{tip:"I don't belong.", wound:"Ambivalence or rejection around the pregnancy, a harsh or frightening birth, separation after it, cold or mechanical handling, or being left alone too long. With no way yet to fight or flee, the only defense a baby has is to withdraw.", beliefs:["I don't belong.","I am alone in the world.","Life is dangerous.","I shouldn't be here."]},
+   now:{tip:"Distance, and living in the head.", text:"A pull toward distance and thinking over feeling, a sense of watching life from slightly outside it, unease with the unpredictability of emotion, or a sensitivity that bruises easily at small slights.", body:"Going far away, foggy, or numb under stress: the shut-down edge of the window. Cold hands and feet, shallow breath, not quite being in the body."},
+   gather:"List the times in your life you felt you shouldn't be here, weren't wanted, or were alone in the world. Then open Your beginning and notice which of the twelve questions they echo.",
+   nut:{tip:"Being warmly received, and saying \"I am here.\"", items:["Being warmly received, again and again","Making your presence known: saying \"I am here\"","Comforting touch, holding, and eye contact","Feeling safe with others","Living in your body","Contact with the earth"]},
+   counter:"Notice when you vanish into your head or leave the room inside yourself, and stay one breath longer.",
+   pro:"Arrive somewhere, feel your feet, and say, aloud or inside, \"I am here.\"",
+   scale:{rel:"One person whose face lights up when you arrive.", skill:"Grounding: feeling your weight held by the earth.", good:"Time in nature, where you belong without having to earn it."},
+   practices:[
+     {name:"Grounding", how:"Feel your feet on the floor and your weight in the chair. Breathe out slowly and say, \"I am here, now.\"", why:"Slow, felt contact with the ground moves the body out of alarm, and it is the first step back into it."},
+     {name:"A welcome", how:"Rest a hand on your heart and say to the child you were, \"I am glad you are here.\"", why:"Warm, gentle touch releases oxytocin, the body's own chemistry of calm and connection."},
+     {name:"Being held", how:"Wrap yourself in a heavy blanket, or ask for a long, firm hug.", why:"Deep, even pressure tells the nervous system it is held and safe."}],
+   bel:{tip:"I have a right to be here.", beliefs:["I have a right to be here.","It is safe to be me.","Life is mostly safe and good.","I belong."]},
+   deeper:"Imprints from this time are preverbal and held in the body, so the work that reaches them is somatic and relational: pre- and perinatal practitioners, Somatic Experiencing practitioners, and biodynamic craniosacral therapists. NARM calls the first of its five core needs Connection.",
+   attach:"Withdrawal is a baby's first defense, and the fearful and avoidant patterns often have early roots here."},
+
+  {key:"need", name:"The Right to Need", wheel:"The Right to Need", short:"Need", theme:"Interdependence", ages:"Birth to about 18 months", band:"BIRTH TO 18 MONTHS",
+   intro:"A baby's whole life is reaching and receiving: for the breast, for arms, for comfort. The work of this stage is learning that it is good to have needs, and that reaching out brings something back.",
+   need:{tip:"Needs met promptly, on the baby's own terms.", items:["To trust that someone will come","To have body and feelings met promptly","To be fed and comforted on their own terms, not a schedule","To be held and soothed","Pleasure in being nourished"]},
+   imp:{tip:"I must do it alone.", wound:"Being left to cry for long stretches, rigid schedules, abrupt weaning, or the opposite: anxious attention that never lets the baby settle. When reaching out goes unanswered, the reach collapses into resignation.", beliefs:["I must do it alone.","I don't need anyone.","I am only lovable when I give.","Other people's needs come before mine."]},
+   now:{tip:"Clinging, or needing no one.", text:"Two shapes of the same hunger: holding on too tightly to people, food, or things, feeling that life owes you; or a proud self-reliance that never asks and quietly runs dry. Being easily drawn to people who promise everything.", body:"An emptiness that food doesn't fill, or exhaustion and collapse after a long stretch of doing it all alone."},
+   gather:"List the times you reached out and no one came, and the times you stopped asking. Then the times someone did come.",
+   nut:{tip:"Reaching out, and letting yourself receive.", items:["Reaching out for help and connection","Letting yourself receive, without paying it back at once","Letting grief be expressed","Being fed and cared for"]},
+   counter:"When you hear yourself say \"I'm fine, I'll do it,\" pause before you turn the help away.",
+   pro:"Ask one person for one small thing this week, and let them give it.",
+   scale:{rel:"Someone who answers when you call.", skill:"Naming a need out loud, in one sentence.", good:"A shared meal you didn't have to cook."},
+   practices:[
+     {name:"Answer yourself", how:"When you notice hunger, tiredness, or loneliness, answer it soon, the way a parent answers a cry.", why:"Meeting a need promptly is what teaches a nervous system that reaching out works."},
+     {name:"Receiving", how:"Let someone give you something, a meal, a hand, a kind word, and simply take it in.", why:"Being cared for releases oxytocin in the one who receives, as well as the one who gives."},
+     {name:"Eating slowly", how:"Eat one meal slowly, for the pleasure of it.", why:"Pleasure and rest together switch the body toward digestion and repair."}],
+   bel:{tip:"My needs are welcome.", beliefs:["My needs are welcome.","Life can nourish me.","I can give and receive.","Your needs matter too."]},
+   deeper:"Attachment-focused therapists (AEDP, attachment-focused EMDR) and NARM, whose second core need is Attunement. For the earliest feeding and holding wounds, somatic and pre- and perinatal practitioners.",
+   attach:"This is the heart of attachment. The anxious pattern often grows from needs met only sometimes, and the avoidant pattern from needs met with distance."},
+
+  {key:"support", name:"The Right to Have Support", wheel:"The Right to Support", short:"Support", theme:"Autonomy", ages:"About 18 months to 3 years", band:"18 MONTHS TO 3 YEARS",
+   intro:"The first steps away from a parent's side, and back again. The toddler needs support that follows their own pace, protection when afraid, and love for who they are rather than for what they can perform.",
+   need:{tip:"Support when vulnerable, at their own pace.", items:["Support when vulnerable, with no strings attached","Protection when afraid","Growing at their own pace, without pressure","Limits set without shame","To be heard"]},
+   imp:{tip:"Never let them see you're weak.", wound:"Being pushed to perform or impress; being leaned on by a lonely parent and becoming their little helper or confidant; being dominated, shamed, or told not to cry. The child trades their real self for an image that works.", beliefs:["Never let them see you're weak.","I'm only loved for what I do.","I have to stay in control.","Help always comes with a hook."]},
+   now:{tip:"Control, performance, or charm.", text:"Needing to stay on top or in control, a polished image that hides the softer self, being the one everyone leans on, distrust of other people's motives, or an all-or-nothing sense of winning and losing.", body:"A chest held high and braced, a set jaw, and trouble letting your body be held or helped."},
+   gather:"List the times you were praised for being strong, grown-up, or impressive, and the times your fear or weakness was met with shame.",
+   nut:{tip:"Being accepted when you are vulnerable.", items:["Being accepted in your vulnerability","Reaching for support, and accepting it","Accepting limits, and making room for failure","Enjoying rather than impressing"]},
+   counter:"Notice the urge to perform or take charge, and let someone else lead, once.",
+   pro:"Tell one trusted person something you are afraid of or struggling with, without fixing it.",
+   scale:{rel:"A friend who likes you on your off days.", skill:"Saying \"I don't know\" or \"I need help\" without apology.", good:"Doing something just for the joy of it, badly."},
+   practices:[
+     {name:"Seen in a soft moment", how:"Share one struggle with someone safe, and let them simply be with you in it.", why:"Stress met with support becomes tolerable stress: the body learns it can be vulnerable and come through."},
+     {name:"Play without an audience", how:"Do something playful where no one is watching or scoring.", why:"Play is the kind of manageable challenge the body grows from."},
+     {name:"Self-holding when afraid", how:"One hand on your heart and one on your belly, breathing slowly, until something settles.", why:"Warm touch and a long exhale shift the body from alarm toward calm."}],
+   bel:{tip:"I can be soft and still be safe.", beliefs:["I can ask for help without shame.","I am loved for who I am.","Honesty works better than control.","I can be soft and still be safe."]},
+   deeper:"NARM, whose third core need is Trust; Internal Family Systems, for the protective parts that keep the image in place; and therapists who work with shame.",
+   attach:null},
+
+  {key:"freedom", name:"The Right to Freedom", wheel:"The Right to Freedom", short:"Freedom", theme:"Spirit and creativity", ages:"About 3 to 5 years", band:"3 TO 5 YEARS",
+   intro:"The age of \"No!\" The child is discovering that they can be separate, want differently, and still be loved, and that love can hold disagreement.",
+   need:{tip:"To explore, to say no, and still be loved.", items:["To explore the world","To feel and show feelings freely, anger too","To say no and set boundaries","To have space","To be guided without shaming or punishment","To be protected without being smothered","To play, and be enjoyed"]},
+   imp:{tip:"To be close is to be trapped.", wound:"Over-control, guilt-trips, and shaming words like bad or naughty; smothering protection; love that withdraws when the child pushes back. The child learns to be good instead of real.", beliefs:["It's up to me to keep everyone happy.","To be close is to be trapped.","Deep down, I am bad.","Life is a list of shoulds."]},
+   now:{tip:"Duty, guilt, and quiet resentment.", text:"Living by shoulds and obligation, guilt after saying no, feeling responsible for other people's feelings, swinging between giving in and digging in your heels, and anger that leaks out as complaint or resentment rather than being said. Closeness can feel like confinement.", body:"Held-in energy: tight shoulders, a clenched gut, a feeling of being stuck or heavy."},
+   gather:"List the times saying no cost you love, and the times you swallowed anger to keep the peace. The held-or-hemmed-in question of late pregnancy may echo here too.",
+   nut:{tip:"Voicing feelings, and setting boundaries.", items:["Expanding outward in creative expression","Voicing your feelings","Setting boundaries","Pushing back against shame and guilt","Telling apart what is yours and what is someone else's"]},
+   counter:"When guilt follows a no, let the no stand anyway.",
+   pro:"Say one clear no this week, and one clear yes to something you want.",
+   scale:{rel:"Someone who can hear your no and stay.", skill:"Telling your feelings apart from other people's.", good:"Making something with your hands, just because."},
+   practices:[
+     {name:"Pushing", how:"Press your palms into a wall, or push against a cushion, and feel your own strength.", why:"Pushing gives held-in energy somewhere to go, and brings back the felt sense of your own power."},
+     {name:"Your own space", how:"Claim a time and a place that are only yours, and choose what happens there.", why:"A sense of control over your own life is one of the foundations of resilience."},
+     {name:"Sound", how:"Hum, sing, or let a long sound out into a pillow.", why:"Using your voice releases tension, and the long exhale settles the body."}],
+   bel:{tip:"I can be myself.", beliefs:["I can say no and still be loved.","My feelings are mine, and yours are yours.","I can approve of myself.","I am free to play and create."]},
+   deeper:"Somatic therapists (Somatic Experiencing, Sensorimotor Psychotherapy), NARM, whose fourth core need is Autonomy, and couples work such as Emotionally Focused Therapy when closeness feels like a trap.",
+   attach:"The avoidant pattern often meets this stage, where closeness can feel like confinement."},
+
+  {key:"love", name:"The Right to Love", wheel:"The Right to Love", short:"Love", theme:"Tenderness and passion", ages:"About 5 to 7 years", band:"5 TO 7 YEARS",
+   intro:"Love fills the whole body. Affection becomes warm and physical, curiosity about bodies grows, and the child learns whether tenderness and pleasure are safe and welcome, and whether their body is their own.",
+   need:{tip:"Tenderness, and a body that is their own.", items:["To give and receive affection safely, without invasion or judgment","Curiosity about the body without shame","Privacy and bodily boundaries respected","To be loved with their whole self"]},
+   imp:{tip:"I'm not good enough to be loved.", wound:"Affection pushed away or met with embarrassment, shame and moralizing about the body, or the opposite: boundaries crossed by an older person. A child protects the heart by hardening around it, and may split love from pleasure.", beliefs:["I'm not good enough to be loved.","My body is shameful.","My worth is in pleasing others.","Love has to be earned by achieving."]},
+   now:{tip:"Heart and body kept apart.", text:"Striving and achieving in place of tenderness, rigidity or perfectionism, difficulty with softness, shame about the body, or love and desire kept in separate rooms.", body:"Armor around the chest and back, a tightly held pelvis, and difficulty softening into touch."},
+   gather:"List the times affection was welcomed, and the times it was turned away, shamed, or taken without asking.",
+   nut:{tip:"Giving and receiving tenderness.", items:["Giving and receiving tenderness","Accepting the softer feelings","Honoring your body","Your right to privacy, and to limit unwanted closeness","Trusting feelings over rigid rules"]},
+   counter:"Notice when you reach for achievement in place of tenderness, and soften instead.",
+   pro:"Ask for, and offer, one tender and wanted touch: a long hug, a held hand.",
+   scale:{rel:"A relationship where your yes and your no are both respected.", skill:"Feeling and naming the softer feelings: tenderness, longing, sweetness.", good:"Pleasure for its own sake: warm water, music, sunlight."},
+   practices:[
+     {name:"Pleasure on purpose", how:"A few times a day, do something pleasurable on purpose and let yourself enjoy it.", why:"Pleasure is not indulgence: it releases endorphins and oxytocin, the body's own chemistry of calm."},
+     {name:"Tender self-touch", how:"Stroke your own arms slowly, or rest a warm hand on your cheek.", why:"Slow, gentle touch reaches nerves tuned to caress, and soothes the nervous system."},
+     {name:"Body kindness", how:"Thank one part of your body for what it does for you.", why:"Kind attention to the body softens the shame that hardens it."}],
+   bel:{tip:"I can love with my whole heart.", beliefs:["I can love with my whole being.","My body is mine.","I am lovable as I am.","Love and pleasure belong together."]},
+   deeper:"Trauma-informed therapists, and therapists who work with the body and with sexuality. NARM's fifth core need is Love-Sexuality. If your boundaries were crossed as a child, it was not your fault, and this is work to do with skilled support, at your own pace. In the United States, the RAINN hotline is 800-656-4673.",
+   attach:null},
+
+  {key:"learning", name:"The Right to Playful Learning", wheel:"The Right to Playful Learning", short:"Learning", theme:"Competence", ages:"About 7 to 12 years", band:"7 TO 12 YEARS",
+   intro:"The school-age years: learning, mastering, and belonging with friends. The child needs patient teaching, and the freedom to be good at some things and not others.",
+   need:{tip:"Patient teaching, and friends to belong with.", items:["To be taught without shaming","Patient mentoring","Belonging with friends","Learning through play","Privacy and bodily integrity"]},
+   imp:{tip:"If I fail, I'm worthless.", wound:"Being shamed for mistakes, compared, rushed, or pushed to meet other people's expectations; being left out by friends, or bullied.", beliefs:["If I fail, I'm worthless.","Learning is a test I will fail.","I don't fit in.","I have to be good at everything."]},
+   now:{tip:"Fear of failing, or giving up early.", text:"Avoiding new things in case you fail, perfectionism, giving up quickly, putting things off, or feeling on the outside of groups.", body:"Freezing or going blank when you are watched or evaluated, or a racing heart before a test."},
+   gather:"List the times you were shamed for getting something wrong, and the teachers, coaches, or friends who made learning feel safe.",
+   nut:{tip:"Learning playfully, at your own pace.", items:["Learning playfully, without pressure","Following your own interests","Building skills without imposed expectations","Finding like-minded people"]},
+   counter:"When you want to quit because you aren't good yet, stay for one more try.",
+   pro:"Take up one thing you are a beginner at, for the pleasure of it.",
+   scale:{rel:"A mentor or friend who enjoys teaching you.", skill:"Breaking a hard task into small steps, with rests between.", good:"Getting lost in something you love."},
+   practices:[
+     {name:"Beginner's play", how:"Try something new where being bad at it is part of the fun.", why:"Manageable challenge, with support, is the positive stress that builds resilience."},
+     {name:"Small wins", how:"Notice and enjoy each small step you finish.", why:"Enjoying progress feeds motivation, and teaches the body that effort can feel good."},
+     {name:"Movement", how:"Move your body most days, in a way you enjoy.", why:"Regular exercise changes the brain and lowers inflammation, at any age."}],
+   bel:{tip:"I can learn at my own pace.", beliefs:["I can be good at some things and not others, and both are okay.","Mistakes are how I learn.","I belong with my friends."]},
+   deeper:"Therapists who work with shame and perfectionism, and mentors or coaches for the skills themselves.",
+   attach:null},
+
+  {key:"voice", name:"The Rights to an Opinion, a Vocation, and Sexual Autonomy", wheel:"Opinion · Vocation · Autonomy", short:"Voice", theme:"A place in the world", ages:"About 12 to the early 20s", band:"12 TO EARLY 20S",
+   intro:"Adolescence into young adulthood: forming your own views, finding your people and your calling, and discovering your identity and sexuality on your own terms. Then the wheel turns back to the top, where your story began.",
+   need:{tip:"A voice, a calling, and a self of one's own.", items:["To form and voice opinions","To belong to a group that shares their values","Support and mentoring for their passions","Freedom to explore identity and sexuality safely","Room to question authority and culture"]},
+   imp:{tip:"My voice doesn't matter.", wound:"Opinions dismissed or punished, passions discouraged, being pushed down a path, shame or danger around identity and sexuality, or no one to guide the way.", beliefs:["My voice doesn't matter.","There's no place for me.","I have to choose the safe path.","Who I am is unacceptable."]},
+   now:{tip:"Unsure of your place, or your calling.", text:"Staying quiet in groups, following other people's plans, feeling unfulfilled in your work, uncertainty about who you are, or rebellion without direction.", body:"A tight throat when you want to speak, or flatness around your own wants."},
+   gather:"List the times you spoke up and were heard, and the times you went quiet. Notice where your voice first got small.",
+   nut:{tip:"Following what you love, among people who share your values.", items:["Joining people who share your values","Following what you love","Expressing and sharing your gifts","Exploring your identity and desire with respect","Voicing your views, and listening to others'","Contributing to your community","Connecting with something larger than yourself"]},
+   counter:"When you hold back an opinion, say one sentence of it.",
+   pro:"Give time each week to one thing that feels like your calling.",
+   scale:{rel:"A community that shares your values.", skill:"Speaking your view while staying open to others.", good:"A tradition, faith, or practice that gives your life meaning."},
+   practices:[
+     {name:"Your voice", how:"Sing, read aloud, or say your view out loud to yourself.", why:"Singing and speaking slow the breath and steady the body."},
+     {name:"What matters", how:"Write down what matters most to you, and one way to live it this week.", why:"Meaning, hope, and tradition are among the foundations of resilience."},
+     {name:"Your people", how:"Spend time with a group that shares something you love.", why:"Belonging protects us at every age."}],
+   bel:{tip:"My voice has a place.", beliefs:["My voice matters.","I have gifts to share.","I can take responsibility for my life.","I have a part to play in the world."]},
+   deeper:"Therapists and coaches who work with identity, vocation, and the passage into adulthood, including LGBTQ+ affirming therapists.",
+   attach:null}
 ];
 
-// 12 aligned months: 9 months + 3 birth moments. The child you were, you now, and the guide share these petals.
-// They line up with the months of The Pregnancy and Birth Mandala, so the two can be read side by side.
+// The twelve stations of your beginning: named by the need each question asks about. Grouped in four, the old trimesters.
+const STATIONS = ["Wanted","Welcome","Safety","Being met","A kind world","Rest","Trust","Being held","Time","Coming through","Arrival","Belonging"];
+const STATION_SHORT = ["Wanted","Welcome","Safety","Met","Kindness","Rest","Trust","Held","Time","Through","Arrival","Belonging"];
+const GROUPS = [
+  {name:"Beginning", sub:"Conception to about week 13",
+   intro:"Your beginning, from conception to taking root. The questions here are about being wanted and welcome, and the work is welcoming yourself."},
+  {name:"Reaching out", sub:"About weeks 14 to 27",
+   intro:"You began to move, to hear, and to reach out, and your world arrived as rhythm, sound, and the climate of the home. The questions here are about being met, and the work is learning to meet yourself."},
+  {name:"Ripening", sub:"About weeks 28 to 40",
+   intro:"Space grew tight and birth drew near. The questions here are about trust, holding, and time, and the work is slowing down and letting yourself be held."},
+  {name:"Arriving", sub:"Labor, birth, and the first hour",
+   intro:"How you came through and how you were met. The questions here are about making it through and belonging, and the work is telling yourself the story of your arrival with a kinder ending."}
+];
+
+// The attachment lens: two dimensions, four styles, and the places the field links to each, on the wheel and in your beginning
+const ATTACH = {
+  intro:"Attachment is the bond a child builds with the people who care for them, and the expectations about closeness they carry out of it. John Bowlby described it, and Mary Ainsworth showed that how reliably a caregiver responds over the first year shapes the pattern a child forms. In adults, researchers describe attachment along two dimensions: anxiety about being left, and avoidance of being close.",
+  measured:"The attachment research is measured, with decades behind it. The links drawn here to particular rights and moments of your beginning are the field's view: possible early roots, which the first years of care then build on or repair.",
+  styles:[
+    {key:"secure", name:"Secure", pos:"Low anxiety · low avoidance",
+     feel:"Closeness feels comfortable, and so does time apart. You can ask for what you need and trust it will usually be met, and conflict does not feel like the end.",
+     roots:"Care that was reliable enough, and that came back and repaired things when it went wrong.",
+     rights:[0,1], qs:[0,11], helps:"Keep doing what works. Secure people still have hard days, and the practices here deepen what is already there."},
+    {key:"anxious", name:"Anxious", pos:"High anxiety · low avoidance",
+     feel:"You want closeness and fear losing it: watching for signs of distance, needing reassurance, finding it hard to settle when someone you love is away.",
+     roots:"Care that was sometimes there and sometimes not, so the child learned to keep watch and hold on.",
+     rights:[1], qs:[0,1,11], helps:"Learning to settle yourself before you reach out, partners who are steady and say when they will be back, and telling the child you were, \"I will stay.\""},
+    {key:"avoidant", name:"Avoidant", pos:"Low anxiety · high avoidance",
+     feel:"You rely on yourself and feel uneasy when people get close or lean on you. Independence feels safer than needing anyone.",
+     roots:"Care that met needs with distance or discomfort, so the child learned to stop reaching.",
+     rights:[1,3], qs:[3,7,8], helps:"Small experiments in letting someone help, and noticing the urge to pull away and staying one breath longer."},
+    {key:"fearful", name:"Fearful", pos:"High anxiety · high avoidance",
+     feel:"You want closeness and fear it at once: pulled toward people, then pushed away by alarm when they come near.",
+     roots:"Care that was frightening or frightened, so the source of comfort was also a source of fear. In children this is called disorganized attachment.",
+     rights:[0,2], qs:[2,6,10], helps:"This pattern most often grows from trauma, and it heals best with skilled support: a trauma-informed therapist alongside the gentler practices here."}
+  ],
+  reflect:["When someone I love goes quiet or pulls away, I…", "When someone gets close to me, I…", "When I need help, I…", "After a fight, I…"],
+  earned:"People who had a hard start but have made sense of it, who can tell their story with both its pain and its context, show up in the Adult Attachment Interview as secure. Researchers call this earned security (Roisman et al., 2002). It is the strongest evidence that this work can change something. You do not change what happened. You change how your story holds together, and with it, how you hold others (Siegel and Hartzell)."
+};
+
+// A check-in: where are you, right now? Each answer offers what tends to help from there.
+const CHECKIN = {
+  high:{label:"Too much", sub:"racing, anxious, flooded", title:"Above the window: bring it down",
+    items:["Breathe out longer than you breathe in: in for four, out for six or eight.","Push your palms firmly into a wall, or your feet into the floor, for a slow count of ten.","Cool water on your face or wrists.","Name five things you can see, slowly, out loud.","Stop the exploring for now. Come back another day."]},
+  low:{label:"Shut down", sub:"numb, foggy, far away", title:"Below the window: come gently back up",
+    items:["Look around the room and let your eyes land on colors and shapes. Turn your head slowly as you look.","Gently move: rock, stretch, tap your arms and legs, or stand and shift your weight.","Hum or sing a little, feeling the vibration in your chest.","Something warm to hold, or a strong taste or smell.","Message someone who is glad you exist."]},
+  ok:{label:"Okay", sub:"present, able to feel and think", title:"Inside your window",
+    items:["You can feel and think at once, which is where this work does its good.","Go on, gently. Touch one thing, then come back to something that steadies you.","Keep the Pause close. Nothing here needs to be finished today."]}
+};
+const PAUSE_HTML = `<div class="pause">
+    <div class="eyebrow">Pause</div>
+    <h2>Come back to now</h2>
+    <p>This work can stir a lot. You can stop at any time. Nothing here needs to be finished today. Where are you, right now?</p>
+    <div class="checkin" id="checkin"></div>
+    <div id="checkin-out"></div>
+    <h4>Grounding, from anywhere</h4>
+    <ol>
+      <li><b>Feel where you are held.</b> Your feet on the floor, your back against the chair, your weight on the ground.</li>
+      <li><b>Look around slowly.</b> Let your eyes land on five things you can see, and name them. Notice four things you can hear, three you can touch.</li>
+      <li><b>Tell yourself the date, and your age.</b> "It is now. I am an adult. That happened then, and I am here."</li>
+      <li><b>Do one kind thing.</b> Water, something warm, a walk, a message to someone who is glad you exist.</li>
+    </ol>
+    <p class="support"><b>If it is too much.</b> Reach out to someone you trust, or a therapist. If you feel unsafe or in crisis, contact your local emergency number, or in the United States call or text 988 to reach the Suicide and Crisis Lifeline.</p>
+  </div>`;
+
+// The body: implicit memory, the window, the ladder, stress and resilience, the chemistry of feeling, and how to walk the wheel
+const BODY_HTML = `
+    <div class="phasehead"><h2>The body</h2>
+      <div class="meta">Why this work goes through the body, and how to do it safely</div>
+      <p>Your earliest imprints were laid down before you had words. That is why they are felt more than remembered, and why the ways back to them run through the body.</p></div>
+    <div class="ring"><h3>${"Implicit memory"}</h3>
+      <p>Before about the age of two or three, experience is kept as implicit memory: body states, feelings, and expectations, rather than stories you can recall. Babies, and even babies in the womb, learn this way, as the studies of newborns who know their mother's voice show. So you cannot remember your birth, and still your body may know how to meet pressure, closeness, or beginnings in ways that started there.</p>
+      <p>William Emerson describes how these preverbal imprints get put into words once language arrives, around age three, as a kind of decision. A baby stuck in labor may keep pushing or go limp, and later that becomes "Under pressure, I struggle through" or "Under pressure, I give up." He also notices that imprints gather by theme across a life, so a stuck birth may be echoed by later times of being trapped. That is why each right on the wheel asks you to gather its theme. These are his clinical observations, offered as the field's view.</p></div>
+    <div class="ring"><h3>Your window</h3>
+      <div class="window" aria-label="The window of tolerance, with too much above it and shut down below it">
+        <div class="w-high"><b>Above the window</b><span>Racing, anxious, angry, flooded: pushing through</span></div>
+        <div class="w-in"><b>Inside your window</b><span>Present: you can feel and think at once</span></div>
+        <div class="w-low"><b>Below the window</b><span>Numb, foggy, collapsed, far away: giving up</span></div>
+      </div>
+      <p>Dan Siegel named this the window of tolerance: the range in which you can feel strong things and still think and stay connected. Above it the body speeds up, below it the body shuts down. Many somatic practitioners call it the window of capacity, because it can grow. Healing happens inside the window, and each time you touch something hard and come back, the window widens a little.</p></div>
+    <div class="ring"><h3>The ladder of states</h3>
+      <ol class="ladder">
+        <li><b>Safe and connected.</b> Calm, curious, able to be with others. Breath easy, face soft.</li>
+        <li><b>Mobilized.</b> Fight or flight: heart up, muscles ready, scanning for danger.</li>
+        <li><b>Shut down.</b> Collapse and numbness, when fighting or fleeing seems impossible.</li>
+      </ol>
+      <p>Stephen Porges' polyvagal theory, drawn as a ladder by Deb Dana, describes these three states, and many therapists find it a useful map for noticing where you are. Some physiologists dispute parts of its biology, so it is offered here as a map rather than settled science.</p></div>
+    <div class="ring"><h3>Stress, support, and resilience</h3>
+      <p>The Center on the Developing Child at Harvard describes three kinds of stress. Positive stress is brief and manageable, and we grow from it. Tolerable stress is serious, but buffered by a supportive relationship. Toxic stress is strong, frequent, or long, without that buffer. What turns the toxic into the tolerable, most of all, is a supportive relationship.</p>
+      <p>Their research finds that resilience is built, not born: from relationships, skills, and good experiences, at any age. They picture a scale, with hardship on one side and support, skills, and good experiences on the other, resting on a fulcrum, a person's starting point. Over time, experience can even move the fulcrum. That is what each right's "What tips the scale" offers.</p></div>
+    <div class="ring"><h3>The chemistry of feeling</h3>
+      <p>Candace Pert, who co-discovered the brain's receptor for endorphins, showed that the messenger molecules of emotion and their receptors are found throughout the body, linking the brain, the immune system, and the hormones. Feelings are not only in the head: they are chemistry, moving through the whole body.</p>
+      <p>That is why the practices here work from the body up. Warm touch and closeness release oxytocin; laughter, singing, and movement release endorphins; a long exhale and humming move the body toward rest. Pert went further, describing the body as the subconscious mind, a view that many in this field share and that goes beyond what has been measured.</p></div>
+    <div class="ring"><h3>How to walk the wheel</h3>
+      <ol class="steps">
+        <li><b>Check your window.</b> If you are above or below it, use the Pause first.</li>
+        <li><b>Find a resource.</b> Something that steadies you: your feet on the ground, a person, a place, a memory of feeling safe.</li>
+        <li><b>Touch it lightly.</b> Read one right or one question, and notice what stirs, in small doses. Peter Levine calls this titration.</li>
+        <li><b>Come back.</b> Return to your resource before it gets too big, then touch the hard thing again, back and forth. Levine calls this pendulation.</li>
+        <li><b>Repair.</b> Say the repair words, or offer the healing nutrient, to the child you were.</li>
+        <li><b>Close.</b> Look around the room, feel your feet, and do one kind thing. Write down the connection you found.</li>
+      </ol>
+      <p class="about">Exploring and reflecting this way is safe to do on your own. Regression, re-living, and deep body work belong with a trained guide.</p>
+      <button type="button" class="pauselink" data-guide>Find your guide</button></div>
+    <p class="src">Siegel (1999); Levine (2010); Porges (2011); Dana (2018); Emerson (2002); National Scientific Council on the Developing Child (2015); Pert (1997)</p>`;
+
+// Your guide: two kinds of people who can walk with you, and how to find them
+const GUIDE_HTML = `
+    <div class="phasehead"><h2>Your guide</h2>
+      <div class="meta">Who can walk with you through this work</div>
+      <p>The guide on this wheel is a role, not a single profession. Two kinds of people can fill it, and both have a place. APPPAH, the Association for Prenatal and Perinatal Psychology and Health, draws the same line in its own directory, between PPN educators and PPN practitioners.</p></div>
+    <div class="ring"><h3>The educator: someone who gives you the map</h3>
+      <p>A pre- and perinatal educator explains imprints, the questions of your beginning, and attachment; helps you notice and name what you find; teaches the practices; and knows when to refer you on. They do not take you back into the experience itself. You can also be your own educator, with this mandala.</p></div>
+    <div class="ring"><h3>The practitioner: someone who goes there with you</h3>
+      <p>Early imprints are held in the body and in implicit memory, so the work that reaches them is mostly somatic and relational, and it needs someone trained to keep you inside your window. Professions and approaches with a real lens on early, preverbal, and attachment wounds include:</p>
+      <ul>
+        <li><b>Pre- and perinatal practitioners and therapists,</b> trained in the traditions of Ray Castellino and William Emerson, and others.</li>
+        <li><b>Somatic Experiencing practitioners,</b> from Peter Levine's training, for trauma held in the body.</li>
+        <li><b>NARM therapists,</b> working with the NeuroAffective Relational Model, built for developmental and attachment trauma.</li>
+        <li><b>Sensorimotor Psychotherapy,</b> Pat Ogden's body-based approach to trauma.</li>
+        <li><b>Biodynamic craniosacral therapists,</b> many of whom train in prenatal and birth work.</li>
+        <li><b>Attachment-focused therapists,</b> such as AEDP, attachment-focused EMDR, and Emotionally Focused Therapy for couples.</li>
+        <li><b>Internal Family Systems therapists,</b> for meeting the child you were as a part of you.</li>
+        <li><b>Adoption-competent therapists,</b> when your beginning holds a relinquishment.</li>
+      </ul></div>
+    <div class="ring"><h3>Where to look</h3>
+      <ul class="refs">
+        <li><a href="https://birthpsychology.com/resources/" target="_blank" rel="noopener noreferrer">APPPAH's practitioner and educator directory</a>, which lists PPN practitioners and PPN educators separately</li>
+        <li><a href="https://directory.traumahealing.org" target="_blank" rel="noopener noreferrer">Somatic Experiencing practitioner directory</a></li>
+        <li><a href="https://narmtraining.com" target="_blank" rel="noopener noreferrer">The NARM Training Institute</a></li>
+        <li><a href="https://craniosacraltherapy.org" target="_blank" rel="noopener noreferrer">Biodynamic Craniosacral Therapy Association of North America</a></li>
+        <li><a href="https://www.emdria.org" target="_blank" rel="noopener noreferrer">EMDR International Association</a> and the <a href="https://ifs-institute.com" target="_blank" rel="noopener noreferrer">IFS Institute</a></li>
+      </ul>
+      <p class="about">Directories list people; they do not vouch for them. APPPAH notes that it is not a licensing body, and that each practitioner works under their own license and scope of practice. Not every somatic practitioner is a licensed therapist, so it is worth asking.</p></div>
+    <div class="ring"><h3>Questions to ask a guide</h3>
+      <ul>
+        <li>What is your training in preverbal, developmental, or birth trauma?</li>
+        <li>Are you licensed, and what is your scope of practice?</li>
+        <li>How do you keep a session inside my window, and what do you do if I go outside it?</li>
+        <li>How do you work with the body as well as with words?</li>
+        <li>Will I stay in charge of the pace, and can I stop at any time?</li>
+      </ul>
+      <p>That last question matters most. Emerson writes that safety and being in control of the process go together: the more a person is in charge, the deeper and safer the work can go.</p></div>
+    <p class="support"><b>If you are in crisis,</b> contact your local emergency number, or in the United States call or text 988.</p>`;
+
+const HEALING_SUPPORT = "If anything here leaves you overwhelmed, numb, or unsafe, stop and use the Pause. For deeper work, the Your guide tab describes who can walk with you, and how to find them.";
+
+/* ---------- Content: the twelve questions of your beginning ---------- */
 const CHILD = [
   {t:"Month 1", w:"Weeks 1–4", wk:[0,4],
    grow:"Counting starts from the first day of your mother's last period, so you were conceived around week 2. About a week later you implanted in the lining of her womb, and the cells that would become your placenta began reaching toward her blood supply.",
@@ -581,8 +900,8 @@ const GUIDE = [
   {imp:"The journey through. The pace and pressure of labor, moments of being stuck, and whether your journey was supported or interrupted, including by synthetic oxytocin, forceps, or vacuum.",
    take:"Whatever your labor was, you made it through. That is a fact your body can be reminded of.",
    attach:null,
-   deep:["Undisturbed birth: privacy, safety, and not being watched (Buckley)", "Birth imprints and how they are thought to show later, in therapy with adults and children (Emerson)", "Following the baby's own pace and pauses, in birth and in healing (Castellino)"],
-   src:"Buckley (2003); Emerson; Castellino, in White (2013)"},
+   deep:["Undisturbed birth: privacy, safety, and not being watched (Buckley)", "Birth imprints and how they are thought to show later, in therapy with adults and children (Emerson)", "Following the baby's own pace and pauses, in birth and in healing (Castellino)", "A baby stuck in labor may keep pushing or go limp, and once words arrive, that can become a decision: \"Under pressure, I struggle through\" or \"Under pressure, I give up\" (Emerson)"],
+   src:"Buckley (2003); Emerson (2002); Castellino, in White (2013)"},
   {imp:"Each birth event may leave an impression (Verny): harsh lights, noise, routine suctioning, and tight wrapping can overwhelm a newborn. A cesarean, forceps, or vacuum bring their own, and medication can leave a baby drowsy or out of touch at the first meeting.",
    take:"However you were born, you can be welcomed now. The words a parent might say at a birth can be said by you, to you: \"You are out now. You made it. You are safe.\"",
    attach:"A frightening arrival can sit underneath fearful patterns, where newness and being seen both set off alarm.",
@@ -671,8 +990,6 @@ const HEALING = [
    src:"Emerson; Siegel & Hartzell (2003); Strange"}
 ];
 
-// where to turn when this work needs more than reflection; the same note closes each phase
-const HEALING_SUPPORT = "Professionals who do this work include pre- and perinatal (PPN) practitioners and therapists, trauma-informed psychotherapists, somatic therapists, adoption-competent therapists, and therapists trained in attachment. Modalities often used include prenatal and birth therapy in the tradition of Castellino and Emerson, Somatic Experiencing, EMDR, and craniosacral therapy. If anything here leaves you overwhelmed, numb, or unsafe, stop, use the Pause above, and reach out to someone you trust or a professional.";
 
 const PRACTICE = [
   {items:[
@@ -702,50 +1019,12 @@ const PRACTICE = [
 ];
 
 // The attachment lens: two dimensions, four styles, and the field's links to the months of the wheel
-const ATTACH = {
-  intro:"Attachment is the bond a child builds with the people who care for them, and the expectations about closeness they carry out of it. John Bowlby described it, and Mary Ainsworth showed that how reliably a caregiver responds over the first year shapes the pattern a child forms. In adults, researchers describe attachment along two dimensions: anxiety about being left, and avoidance of being close.",
-  measured:"The attachment research is measured, with decades behind it. The links drawn here between each style and particular months of pregnancy and birth are the field's view: possible early roots that may lay a groundwork, which the first years of care then build on or repair.",
-  styles:[
-    {key:"secure", name:"Secure", pos:"Low anxiety · low avoidance",
-     feel:"Closeness feels comfortable, and so does time apart. You can ask for what you need and trust it will usually be met, and conflict does not feel like the end.",
-     roots:"Care that was reliable enough, and that came back and repaired things when it went wrong.",
-     months:[0,11], helps:"Keep doing what works. Secure people still have hard days, and the practices here deepen what is already there."},
-    {key:"anxious", name:"Anxious", pos:"High anxiety · low avoidance",
-     feel:"You want closeness and fear losing it: watching for signs of distance, needing reassurance, finding it hard to settle when someone you love is away.",
-     roots:"Care that was sometimes there and sometimes not, so the child learned to keep watch and hold on.",
-     months:[0,1,11], helps:"Learning to settle yourself before you reach out, partners who are steady and say when they will be back, and telling the child you were, \"I will stay.\""},
-    {key:"avoidant", name:"Avoidant", pos:"Low anxiety · high avoidance",
-     feel:"You rely on yourself and feel uneasy when people get close or lean on you. Independence feels safer than needing anyone.",
-     roots:"Care that met needs with distance or discomfort, so the child learned to stop reaching.",
-     months:[3,7,8], helps:"Small experiments in letting someone help, and noticing the urge to pull away and staying one breath longer."},
-    {key:"fearful", name:"Fearful", pos:"High anxiety · high avoidance",
-     feel:"You want closeness and fear it at once: pulled toward people, then pushed away by alarm when they come near.",
-     roots:"Care that was frightening or frightened, so the source of comfort was also a source of fear. In children this is called disorganized attachment.",
-     months:[2,6,10], helps:"This pattern most often grows from trauma, and it heals best with skilled support: a trauma-informed therapist alongside the gentler practices here."}
-  ],
-  reflect:["When someone I love goes quiet or pulls away, I…", "When someone gets close to me, I…", "When I need help, I…", "After a fight, I…"],
-  earned:"People who had a hard start but have made sense of it, who can tell their story with both its pain and its context, show up in the Adult Attachment Interview as secure. Researchers call this earned security (Roisman et al., 2002). It is the strongest evidence that this work can change something. You do not change what happened. You change how your story holds together, and with it, how you hold others (Siegel and Hartzell)."
-};
-
-// The pause: always one tap away
-const PAUSE_HTML = `<div class="pause">
-    <div class="eyebrow">Pause</div>
-    <h2>Come back to now</h2>
-    <p>This work can stir a lot. You can stop at any time. Nothing here needs to be finished today.</p>
-    <ol>
-      <li><b>Feel where you are held.</b> Your feet on the floor, your back against the chair, your weight on the ground.</li>
-      <li><b>Look around slowly.</b> Let your eyes land on five things you can see, and name them to yourself. Notice four things you can hear, three you can touch.</li>
-      <li><b>Breathe out longer than you breathe in.</b> In for four, out for six, a few times.</li>
-      <li><b>Tell yourself the date, and your age.</b> \"It is now. I am an adult. That happened then, and I am here.\"</li>
-      <li><b>Do one kind thing.</b> Water, something warm, a walk, a message to someone who is glad you exist.</li>
-    </ol>
-    <p class="support"><b>If it is too much.</b> Reach out to someone you trust, or a therapist. If you feel unsafe or in crisis, contact your local emergency number, or in the United States call or text 988 to reach the Suicide and Crisis Lifeline.</p>
-  </div>`;
 
 /* ---------- Geometry ---------- */
-const R = {core:[0,66], child:[72,137], mother:[143,211], circle:[217,275], support:[281,331], practice:[337,399], month:[404,419], moon:[422,446], braid:[536,560]};
+// Center out: the seed, the twelve questions of your beginning, then for each right its need, imprint, how it shows
+// now, healing nutrients, and the belief petals; then the ages, the names, and the braid.
+const R = {core:[0,62], q:[68,152], need:[160,216], imp:[222,280], now:[286,344], nut:[350,404], bel:[410,462], age:[474,496], name:516, braid:[536,560]};
 const VB = 578;
-const LBL = {week:459, mark:487, sub:497, name:519};   // label radii between the moons and the braid
 const GAP = 1.2;
 const NS = "http://www.w3.org/2000/svg";
 const svg = document.getElementById("m");
@@ -788,51 +1067,43 @@ function arcText(r,a0,a1,text,cls,size,ls,parent){
 }
 const cssv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
+const W = 360/RIGHTS.length;
+// a right's slice of the wheel; the first is centered at the top, and the last returns to it
+const rA = i => [i*W - W/2, i*W + W/2];
+// short words for the wheel itself; the panel holds the full text
+const WHEEL_TEXT = [
+  {need:"Wanted, held, safe", imp:"I don't belong", now:"Distance, life in the head", nut:"Being warmly received", bel:"I have a right to be here"},
+  {need:"Needs met, on their terms", imp:"I must do it alone", now:"Clinging, or needing no one", nut:"Reaching out, receiving", bel:"My needs are welcome"},
+  {need:"Support at their own pace", imp:"Never let them see you're weak", now:"Control, performance, charm", nut:"Accepted when vulnerable", bel:"I can be soft and safe"},
+  {need:"To explore, and say no", imp:"To be close is to be trapped", now:"Duty, guilt, resentment", nut:"Feelings and boundaries", bel:"I can be myself"},
+  {need:"Tenderness and privacy", imp:"I'm not good enough to love", now:"Heart and body kept apart", nut:"Giving and receiving tenderness", bel:"I can love wholeheartedly"},
+  {need:"Patient teaching, friends", imp:"If I fail, I'm worthless", now:"Fear of failing", nut:"Learning playfully", bel:"I learn at my own pace"},
+  {need:"A voice, and a calling", imp:"My voice doesn't matter", now:"Unsure of my place", nut:"Following what you love", bel:"My voice has a place"}
+];
+
 /* ---------- Draw ---------- */
-// past the due date: days after it, continuing past the wheel's last quarter at the pace of
-// the last month's weeks (six degrees a week), so weeks 41 and 42 match the weeks before them
-const POST=days=>270+days*6/7;
-function weekPetal(a0,a1){
-  // rises from the ring, swells, and meets in a soft point at the middle of its week
-  const r0=R.moon[1]+1, sh=R.moon[1]+17, tip=R.moon[1]+26, w=a1-a0, m=(a0+a1)/2, p=(r,a)=>`${f(P(r,a)[0])} ${f(P(r,a)[1])}`;
-  return `M${p(r0,a0)} C${p(sh,a0)} ${p(tip-3,m-w*.2)} ${p(tip,m)} C${p(tip-3,m+w*.2)} ${p(sh,a1)} ${p(r0,a1)} `+arc(r0,a1,a0,0)+"Z";
-}
 const cells=[];
-// short summary card for a petal: hover with a mouse, or tap on a tablet (the tap also opens it in full)
-const firstSentence=t=>{ const m=t.match(/^.*?[.!?](?=\s|$)/); return m?m[0]:t; };
-// the hover card names its ring, in that ring's colour
-const RING_TAG={child:"Child ring", mother:"You ring", circle:"Support ring", support:"Guide ring", practice:"Healing practices ring"};
-function cellTip(ring, phase, idx, k){
-  const more="<br>Tap to read more.", tag=`<span class="ringtag"><i></i>${RING_TAG[ring]}</span>`;
-  if(ring==="practice"){
-    const it=PRACTICE[phase].items[k], m=it.match(/^<b>(.*?)<\/b>\s*(.*)$/);
-    return `${tag}<b>${m?m[1]:RINGS.practice.name}</b>${m?m[2]:it}<span>${PHASES[phase].name}<br>Ways to go further with your own story inside.${more}</span>`;
-  }
-  const c=CHILD[idx], r=monthRange(idx), when=`${c.w}${r?" · "+r:""}`;
-  if(ring==="child")  return `${tag}<b>${c.t}</b>${c.take}<span>${when}${more}</span>`;
-  if(ring==="mother") return `${tag}<b>${c.t}</b>${YOU[idx].tip}<span>${when}${more}</span>`;
-  if(ring==="circle") return `${tag}<b>${c.t}</b>${CIRCLE[idx].tip}<span>${when}${more}</span>`;
-  return `${tag}<b>${c.t}</b><span class="tql">Possible imprint</span>${IMPRINT_TIP[idx]}<span class="tql q">A question that may have begun then:</span><i class="tq">${QUESTIONS[idx]}</i><span class="tql q">And how it can sound now:</span><i class="tq">${NOW_Q[idx]}</i><span>${when}${more}</span>`;
+const RING_TAG={q:"Your beginning", need:"The need", imp:"The imprint", now:"In you now", nut:"Healing nutrients", bel:"The belief it opens into"};
+function cellTip(ring, i){
+  const tag=`<span class="ringtag"><i></i>${RING_TAG[ring]}</span>`, more="<span>Tap to read more.</span>";
+  if(ring==="q") return `${tag}<b>${STATIONS[i]}</b><i class="tq">${QUESTIONS[i]}</i><span class="tql q">And how it can sound now:</span><i class="tq">${NOW_Q[i]}</i>${more}`;
+  const r=RIGHTS[i];
+  const body = ring==="need" ? r.need.tip : ring==="imp" ? `The decision it can leave: <i>${r.imp.tip}</i>` : ring==="now" ? r.now.tip : ring==="nut" ? r.nut.tip : `<i>${r.bel.tip}</i>`;
+  return `${tag}<b>${r.name}</b>${body}<span>${r.ages}</span>${more}`;
 }
-function addCell(d, ring, phase, idx, fillVar, label, at){
-  const c=el("path",{d, class:"cell", fill:`var(${fillVar})`, tabindex:"0", role:"button", "aria-label":label});
-  c.dataset.ring=ring; c.dataset.phase=phase; if(idx!=null) c.dataset.idx=idx;
-  // the slice of the wheel a cell sits in: its month, or for a practice petal, the month it lines up with
-  c.dataset.slice = idx!=null ? idx : phase*3+(at&&at.k!=null?at.k:0);
-  c.addEventListener("click",()=>select(phase, ring, idx, true));
-  c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); select(phase, ring, idx, true);} });
-  c.addEventListener("mouseenter",()=>hover(phase,idx,ring,c)); c.addEventListener("mouseleave",()=>hover(null));
-  c.addEventListener("focus",()=>hover(phase,idx,ring,c)); c.addEventListener("blur",()=>hover(null));
-  if(at){
-    const info=()=>{ const [x,y]=P(at.r,at.a); return {x,y,html:cellTip(ring,phase,idx,at.k),color:RINGS[ring].color}; };
-    c.addEventListener("mouseenter",()=>{ if(!openMoon) moonTip(c,info(),true); });
-    c.addEventListener("mouseleave",()=>{ if(!openMoon) moonTip(null); });
-    c.addEventListener("focus",()=>{ if(!openMoon && c.matches(":focus-visible")) moonTip(c,info(),true); });
-    c.addEventListener("blur",()=>{ if(!openMoon) moonTip(null); });
-  }
+function addCell(d, ring, i, label, tipAt){
+  const c=el("path",{d, class:"cell c-"+ring, fill:`var(${RINGS[ring].color})`, tabindex:"0", role:"button", "aria-label":label});
+  c.dataset.ring=ring; c.dataset.i=i; c.dataset.slice=(ring==="q"?"q":"r")+i;
+  const go=()=>{ moonTip(null); ring==="q" ? showBeginning(i,true) : showRight(i,ring,true); };
+  c.addEventListener("click",go);
+  c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } });
+  const info=()=>{ const [x,y]=P(tipAt.r,tipAt.a); return {x,y,html:cellTip(ring,i),color:RINGS[ring].color}; };
+  c.addEventListener("mouseenter",()=>{ hover(c); if(!openMoon) moonTip(c,info(),true); });
+  c.addEventListener("mouseleave",()=>{ hover(null); if(!openMoon) moonTip(null); });
+  c.addEventListener("focus",()=>{ hover(c); if(!openMoon && c.matches(":focus-visible")) moonTip(c,info(),true); });
+  c.addEventListener("blur",()=>{ hover(null); if(!openMoon) moonTip(null); });
   cells.push(c); return c;
 }
-
 /* The braid: three strands, the baby, the mother and the support around her, plaited around the whole wheel.
    Each strand weaves in and out across the band and passes over one strand, then under the other,
    in turn. Every strand is cut into pieces where it changes from lying underneath to lying on top;
@@ -864,193 +1135,118 @@ function drawBraid(){
     el("path",{d,fill:"none",stroke:`var(${color})`,"stroke-width":6.5,"stroke-linecap":"round"},g);
   }));
 }
+
 function draw(){
   svg.innerHTML=""; cells.length=0; tpId=0;
-  // ornament rings
-  const gMoon = el("g",{id:"moonband"});
   drawBraid();
-  // the months on the time wheel: a span of color for each, the same twelve as the rings
-  CHILD.forEach((c,i)=>{
-    const a0=i*30, a1=a0+30, s=Math.floor(i/3);
-    const sp=el("path",{d:sector(R.month[0],R.month[1],a0+0.4,a1-0.4,1,0),class:i%2?"mspan alt":"mspan",tabindex:"0",role:"button","aria-label":`${c.t}, ${c.w}. Open this month`});
-    const info=()=>{ const [x,y]=P(R.month[1],a0+15), r=monthRange(i);
-      return {x,y,html:`<b>${c.t}</b>${c.w}${r?`<span>${r}</span>`:""}<span>Tap to open this month.</span>`}; };
-    sp.addEventListener("mouseenter",()=>{ if(!openMoon) moonTip(sp,info(),true); });
-    sp.addEventListener("mouseleave",()=>{ if(!openMoon) moonTip(null); });
-    sp.addEventListener("focus",()=>{ if(sp.matches(":focus-visible")) moonTip(sp,info(),true); });
-    sp.addEventListener("blur",()=>moonTip(null));
-    sp.addEventListener("click",e=>{ e.stopPropagation(); moonTip(null); select(s,null,i,true); });
-    sp.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); select(s,null,i,true); } });
-    arcText((R.month[0]+R.month[1])/2,a0+1,a1-1,i<9?`MONTH ${i+1}`:c.t.toUpperCase(),"mlbl",10.5,1.4);
+  const labels=el("g",{"pointer-events":"none"});
+  RIGHTS.forEach((r,i)=>{
+    const [a0,a1]=rA(i), m=i*W, b0=a0+GAP, b1=a1-GAP, t=WHEEL_TEXT[i];
+    // the ages, and the name outside them
+    el("path",{d:sector(R.age[0],R.age[1],a0+0.4,a1-0.4,1,0),class:i%2?"mspan alt":"mspan","pointer-events":"none"});
+    arcText((R.age[0]+R.age[1])/2,a0+1,a1-1,r.band,"mlbl",10,1.2,labels);
+    const nm=arcText(R.name,a0+1,a1-1,r.wheel,"seclbl",17,0.6);
+    nm.addEventListener("click",()=>showRight(i,null,true));
+    // center out: need, imprint, now, nutrients, and the belief petal
+    addCell(petal(R.bel[0],R.bel[1],b0,b1,CURVE),"bel",i,`${r.name}: the belief it opens into`,{a:m,r:R.bel[0]+22});
+    addCell(sector(R.nut[0],R.nut[1],b0,b1,1,CURVE,CURVE),"nut",i,`${r.name}: healing nutrients`,{a:m,r:(R.nut[0]+R.nut[1])/2});
+    addCell(sector(R.now[0],R.now[1],b0,b1,1,CURVE,CURVE),"now",i,`${r.name}: in you now`,{a:m,r:(R.now[0]+R.now[1])/2});
+    addCell(sector(R.imp[0],R.imp[1],b0,b1,1,CURVE,CURVE),"imp",i,`${r.name}: the imprint`,{a:m,r:(R.imp[0]+R.imp[1])/2});
+    addCell(sector(R.need[0],R.need[1],b0,b1,1,CURVE,CURVE),"need",i,`${r.name}: the need`,{a:m,r:(R.need[0]+R.need[1])/2});
+    arcText(R.bel[0]+20,b0+4,b1-4,t.bel,"ctext ct-dark",11.5,0.2,labels);
+    arcText((R.nut[0]+R.nut[1])/2+2,b0+2,b1-2,t.nut,"ctext ct-light",11.5,0.2,labels);
+    arcText((R.now[0]+R.now[1])/2+2,b0+2,b1-2,t.now,"ctext ct-light",11.5,0.2,labels);
+    arcText((R.imp[0]+R.imp[1])/2+2,b0+2,b1-2,"“"+t.imp+"”","ctext ct-light ct-belief",12,0.2,labels);
+    arcText((R.need[0]+R.need[1])/2+2,b0+2,b1-2,t.need,"ctext ct-dark",11,0.2,labels);
   });
-  // forty weeks around the outer ring: a tick between weeks, longer every fifth, and each week numbered in its own span
-  const gs=el("g",{"pointer-events":"none"});
-  for(let w=1;w<=40;w++){
-    const a0=weekToAngle(w-1), a1=weekToAngle(w);
-    // a petal for each week: it rises from the ring and rounds out, edge to edge with its neighbours
-    const d=weekPetal(a0,a1);
-    el("path",{d,class:"wks",id:"wks"+w},gs);
-  }
-  const gw=el("g",{"pointer-events":"none"});
-
-  el("path",{d:`M${f(P(R.moon[1],0)[0])} ${f(P(R.moon[1],0)[1])} `+arc(R.moon[1],0,270,1),class:"wk"},gw);
-  for(let w=0;w<=40;w++){
-    const a=weekToAngle(w), five=w%5===0, [x0,y0]=P(R.moon[1]-(five?11:6),a), [x1,y1]=P(R.moon[1],a);
-    el("line",{x1:f(x0),y1:f(y0),x2:f(x1),y2:f(y1),class:five?"wk wk5":"wk"},gw);
-    if(w>0){ const [tx,ty]=P(LBL.week,(weekToAngle(w-1)+a)/2);
-      const t=el("text",{x:f(tx),y:f(ty),class:"wklbl","text-anchor":"middle","dominant-baseline":"central"},gw); t.textContent=w; }
-  }
-  // practice petals (outermost ring)
-  PHASES.forEach((ph,s)=>{
-    for(let k=0;k<3;k++){
-      const a0=s*90+k*30, a1=a0+30;
-      addCell(petal(R.practice[0],R.practice[1],a0+GAP,a1-GAP,CURVE),"practice",s,null,"--practice",`${RINGS.practice.name}, ${ph.name}`,{a:a0+15,r:R.practice[0]+20,k});
-    }
+  // the twelve questions of your beginning, around the seed
+  STATIONS.forEach((s,k)=>{
+    const a0=k*30, a1=a0+30;
+    addCell(sector(R.q[0],R.q[1],a0+GAP,a1-GAP,1,CURVE),"q",k,`${s}: ${QUESTIONS[k]}`,{a:a0+15,r:(R.q[0]+R.q[1])/2});
+    arcText(126,a0+1,a1-1,STATION_SHORT[k],"lbl lbl-dark",10.5,0.4,labels);
   });
-  // educator ring, 12 segments aligned with the months
-  CHILD.forEach((c,i)=>{ const sx=Math.floor(i/3);
-    addCell(sector(R.support[0],R.support[1],i*30+GAP,(i+1)*30-GAP,1,CURVE,CURVE),"support",sx,i,"--support",`${RINGS.support.name}, ${c.t}`,{a:i*30+15,r:(R.support[0]+R.support[1])/2}); });
-  // circle of support ring, 12 segments aligned with the months
-  CHILD.forEach((c,i)=>{ const sx=Math.floor(i/3);
-    addCell(sector(R.circle[0],R.circle[1],i*30+GAP,(i+1)*30-GAP,1,CURVE,CURVE),"circle",sx,i,"--circle",`${RINGS.circle.name}, ${c.t}`,{a:i*30+15,r:(R.circle[0]+R.circle[1])/2}); });
-  // mother ring, 12 scalloped segments aligned with the months
-  CHILD.forEach((c,i)=>{ const sx=Math.floor(i/3);
-    addCell(sector(R.mother[0],R.mother[1],i*30+GAP,(i+1)*30-GAP,1,CURVE,CURVE),"mother",sx,i,"--mother",`${RINGS.mother.name}, ${c.t}`,{a:i*30+15,r:(R.mother[0]+R.mother[1])/2}); });
-  // child ring, 12 petals
-  CHILD.forEach((c,i)=>{
-    const s=Math.floor(i/3);
-    addCell(sector(R.child[0],R.child[1],i*30+GAP,(i+1)*30-GAP,1,CURVE),"child",s,i,"--child",`${RINGS.child.name}, ${c.t}`,{a:i*30+15,r:(R.child[0]+R.child[1])/2});
-  });
-  // ring labels; the months themselves are named on the time wheel
-  PHASES.forEach((ph,s)=>{
-    const a0=s*90, a1=a0+90;
-    arcText((R.child[0]+R.child[1])/2+4,a0+28,a1-28,"CHILD","lbl lbl-dark",14,1.6);
-    arcText((R.mother[0]+R.mother[1])/2-6,a0+31,a1-31,"YOU","lbl lbl-light",14,2.5);
-    arcText((R.circle[0]+R.circle[1])/2+4,a0+31,a1-31,"SUPPORT","lbl lbl-light",14,2.5);
-    arcText((R.support[0]+R.support[1])/2,a0+31,a1-31,"GUIDE","lbl lbl-light",14,2.5);
-    arcText(R.practice[0]+20,a0+31,a1-31,"PRACTICES","lbl lbl-light",14,2.5);
-    // phase name outside
-    const t=arcText(LBL.name,a0+3,a1-3,ph.name,"seclbl",22,1.5);
-    t.addEventListener("click",()=>select(s,null,null,true));
-    arcText(LBL.sub,a0+3,a1-3,ph.sub,"secsub",12.5,1.6);
-  });
+  svg.appendChild(labels);
   // core
-  const core = el("g",{class:"cell", tabindex:"0", role:"button","aria-label":"About the center"});
-  el("circle",{cx:0,cy:0,r:R.core[1],fill:"var(--center)"},core);   // the child ring's lilac (a shade deeper in light mode): the center is the child you were
+  const core = el("g",{class:"cell", tabindex:"0", role:"button","aria-label":"The child you were, at the center. Read how to read this mandala"});
+  el("circle",{cx:0,cy:0,r:R.core[1],fill:"var(--center)"},core);
   // Seed of Life: seven circles of equal radius, six centered on the rim of the first
-  const sr=28, sg=el("g",{fill:"none",stroke:"var(--seed)","stroke-width":3.3,opacity:1,"pointer-events":"none"},core);
-  // the six-petal flower inside the central circle, filled: each petal runs from the center to a rim point,
-  // bounded by the arcs of the two neighbouring circles that pass through both
+  const sr=26, sg=el("g",{fill:"none",stroke:"var(--seed)","stroke-width":3.1,"pointer-events":"none"},core);
   for(let k=0;k<6;k++){ const t=k*Math.PI/3 - Math.PI/2, x=f(sr*Math.cos(t)), y=f(sr*Math.sin(t));
     el("path",{d:`M0 0 A${sr} ${sr} 0 0 1 ${x} ${y} A${sr} ${sr} 0 0 1 0 0Z`,fill:"var(--seed)",stroke:"none",opacity:.95},sg); }
   el("circle",{cx:0,cy:0,r:sr},sg);
   for(let k=0;k<6;k++){ const t=k*Math.PI/3 - Math.PI/2; el("circle",{cx:f(sr*Math.cos(t)),cy:f(sr*Math.sin(t)),r:sr},sg); }
-  el("circle",{cx:0,cy:0,r:sr*2,"stroke-width":2.8,opacity:.9},sg);
-  core.setAttribute("aria-label","The child you were, at the center. Read more about the center of this mandala");
+  el("circle",{cx:0,cy:0,r:sr*2,"stroke-width":2.6,opacity:.9},sg);
   core.addEventListener("click",()=>showCenter(true)); core.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();showCenter(true);}});
   const tip=document.getElementById("coretip");
   ["mouseenter","focus"].forEach(ev=>core.addEventListener(ev,()=>tip.classList.add("on")));
   ["mouseleave","blur","click"].forEach(ev=>core.addEventListener(ev,()=>tip.classList.remove("on")));
-  const ring=el("path",{d:`M0 ${-R.moon[1]} A${R.moon[1]} ${R.moon[1]} 0 1 1 0 ${R.moon[1]} A${R.moon[1]} ${R.moon[1]} 0 1 1 0 ${-R.moon[1]} M0 ${-R.moon[0]} A${R.moon[0]} ${R.moon[0]} 0 1 0 0 ${R.moon[0]} A${R.moon[0]} ${R.moon[0]} 0 1 0 0 ${-R.moon[0]}Z`,
-    class:"moonring", "fill-rule":"evenodd", tabindex:"0", role:"button", "aria-label":"The time wheel. Read what it shows"});
-  const ringHtml=`<b>The time wheel</b>Holds every marker of time in your own beginning: the months, the forty weeks, gold marks where each trimester began, the birth window from 37 to 42 weeks, and, once you enter your birthday, the full and new moons of the months you were carried.<span>Tap any month, week, or moon to see its dates.</span>`;
-  const ringAt=(x,y)=>({x,y,html:ringHtml});
-  ring.addEventListener("click",e=>{ e.stopPropagation();
-    if(ring.classList.contains("open")){ moonTip(null); return; }
-    const pt=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());
-    moonTip(ring, ringAt(pt.x,pt.y)); });
-  ring.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); moonTip(ring, ringAt(0,-(R.moon[0]+R.moon[1])/2)); } });
-  ring.addEventListener("blur",()=>{ if(openMoon===ring) moonTip(null); });
-  // weeks above the ring's tap area, so the ticks and numbers answer with their own dates
-  const triName=w=> w<=13?"First trimester": w<=27?"Second trimester":"Third trimester";
-  for(let w=1;w<=40;w++){
-    const a0=weekToAngle(w-1), a1=weekToAngle(w), mid=(a0+a1)/2;
-    const hit=el("path",{d:sector(R.moon[1]-8,LBL.week+12,a0,a1,1,0),class:"wkhit",tabindex:"0",role:"button","aria-label":`Week ${w}`});
-    const sc=document.getElementById("wks"+w), warm=on=>sc.classList.toggle("hov",on);
-    hit.addEventListener("mouseenter",()=>warm(true)); hit.addEventListener("mouseleave",()=>warm(false));
-    hit.addEventListener("focus",()=>warm(true)); hit.addEventListener("blur",()=>warm(false));
-    tipOn(hit,()=>{ const [x,y]=P(R.moon[1],mid);
-      if(!EDD) return {x,y,html:`<b>Week ${w}</b>${triName(w)}<span>Enter a date to see the days of each week.</span>`};
-      const L=lmp(), d0=addDays(L,(w-1)*7), d1=addDays(L,w*7-1);
-      return {x,y,html:`<b>Week ${w}</b>${fmtS(d0)} to ${fmt(d1)}<span>${triName(w)}${birthNote(d0,d1)}</span>`}; });
-  }
-  svg.appendChild(gMoon);
-  // today needle layer
-  el("g",{id:"needle"});
   el("g",{id:"selOutline"});
-  drawMoons(); applySel();
+  applySel();
+}
+// hovering any cell lights its whole slice: a right from its need out to its petal, or one question of your beginning
+function hover(cell){
+  if(!cell){ svg.classList.remove("dimming"); cells.forEach(c=>c.classList.remove("off")); return; }
+  svg.classList.add("dimming");
+  cells.forEach(c=>c.classList.toggle("off", c.dataset.slice!==cell.dataset.slice));
 }
 
-/* ---------- Dates & moons ---------- */
-// month boundaries in weeks, mapped onto 30 degrees each across 270 degrees
-const B=[0,4,8,13,17,22,27,31,35,40];
-function weekToAngle(w){
-  if(w<=0) return 0; if(w>=40) return 270;
-  for(let i=0;i<9;i++){ if(w<=B[i+1]) return i*30 + 30*(w-B[i])/(B[i+1]-B[i]); }
-  return 270;
+/* ---------- Hover cards ---------- */
+const mtip=document.getElementById("moontip");
+// tap or click pins a card open; a mouse hover shows it while over; keyboard focus opens it too
+function tipOn(node, info){
+  node.addEventListener("click",e=>{ e.stopPropagation(); moonTip(node.classList.contains("open")?null:node,info()); });
+  node.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); moonTip(node,info()); } });
+  node.addEventListener("mouseenter",()=>{ if(!openMoon) moonTip(node,info(),true); });
+  node.addEventListener("mouseleave",()=>{ if(!openMoon) moonTip(null); });
+  node.addEventListener("focus",()=>{ if(node.matches(":focus-visible")) moonTip(node,info()); });
+  node.addEventListener("blur",()=>{ if(openMoon===node) moonTip(null); });
 }
+let openMoon=null;
+function moonTip(mk, info, hoverOnly){
+  if(openMoon) openMoon.classList.remove("open");
+  openMoon=null;
+  if(!mk){ mtip.classList.remove("on"); return; }
+  if(!hoverOnly){ openMoon=mk; mk.classList.add("open"); }
+  mtip.innerHTML=info.html;
+  mtip.classList.toggle("ringed",!!info.color);
+  if(info.color) mtip.style.setProperty("--tipc",`var(${info.color})`);
+  const box=mtip.parentElement, W=box.clientWidth, scale=W/(2*VB);
+  const px=(info.x+VB)*scale, py=(info.y+VB)*scale, w=mtip.offsetWidth, h=mtip.offsetHeight;
+  const left=Math.min(Math.max(px-w/2, 0), W-w);
+  const above=py-h-22*scale-6;
+  mtip.style.left=left+"px"; mtip.style.top=(above>=0 ? above : py+22*scale+6)+"px";
+  mtip.classList.add("on");
+}
+document.addEventListener("click",()=>{ if(openMoon) moonTip(null); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape" && openMoon) moonTip(null); });
+window.addEventListener("resize",()=>moonTip(null));
+
+
+/* ---------- Your birthday and its moons ---------- */
 // EDD is the date the forty weeks end on: your due date when you know it, otherwise your birthday
 let EDD=null, BDAY=null, DUE=null, BTIME="";
-// birth details, all optional: how birth begins, when labor began (or an induction starts), and the birth, actual or planned
 let BIRTH={kind:"spont",labor:null,birth:null,timeKnown:false};
 const KIND={spont:"Labor began on its own",induce:"Induction",cesarean:"Cesarean"};
-const ahead=()=>BIRTH.kind==="spont"?"Expected":"Planned";
+const DAY=86400000;
+const addDays=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n,d.getHours(),d.getMinutes(),d.getSeconds(),d.getMilliseconds());
+const fmt=d=>d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+const fmtS=d=>d.toLocaleDateString(undefined,{month:"short",day:"numeric"});
 const fmtT=d=>d.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
 // a birth without a known time is shown by its date alone
 const fmtDT=d=>(d===BIRTH.birth && !BIRTH.timeKnown) ? fmt(d) : `${fmt(d)}, ${fmtT(d)}`;
-// where the birth fell, when a due date says so; without one it stands at forty weeks by assumption
-const whereB=d=> DUE ? `At ${gaText(d)}, ${vsDue(d)}.` : "Placed at forty weeks. Add your due date to see where it really fell.";
+function lmp(){ return EDD ? addDays(EDD,-280) : null; }
 function dur(ms){ const m=Math.round(ms/60000), h=Math.floor(m/60), r=m%60;
   return h ? `${h} ${h===1?"hour":"hours"}${r?` ${r} min`:""}` : `${r} min`; }
 function gaText(d){ const gd=Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate())-lmp())/DAY);
   return `${Math.floor(gd/7)} weeks ${gd%7} ${gd%7===1?"day":"days"}`; }
 function vsDue(d){ const n=Math.round((new Date(d.getFullYear(),d.getMonth(),d.getDate())-EDD)/DAY);
   return n===0 ? "on the due date" : `${Math.abs(n)} ${Math.abs(n)===1?"day":"days"} ${n<0?"before":"after"} the due date`; }
-// Weeks past 40 appear only when a birth entered falls past the due date: one week, or two.
-function postWeeks(){
-  // without a due date the birth stands at forty weeks by assumption, so there are no weeks past it to show
-  if(!EDD || !BIRTH.birth || !DUE) return 0;
-  const days=(dayOf(BIRTH.birth)-lmp())/DAY;
-  return days<280 ? 0 : Math.min(2, Math.floor((days-280)/7)+1);
+// the dates a station of your beginning spanned, once a birthday is entered
+function monthRange(i){
+  if(!EDD || !CHILD[i].wk) return "";
+  const L=lmp(), w=CHILD[i].wk;
+  return fmtS(addDays(L,w[0]*7))+" – "+fmt(addDays(L,w[1]*7-1));
 }
-function drawPostWeeks(g,k){
-  if(!k) return;
-  const L=lmp();
-  el("path",{d:`M${f(P(R.moon[1],270)[0])} ${f(P(R.moon[1],270)[1])} `+arc(R.moon[1],270,POST(7*k),1),class:"wk","stroke-dasharray":"4 4","pointer-events":"none"},g);
-  for(let w=41;w<=40+k;w++){
-    const a0=POST((w-41)*7), a1=POST((w-40)*7), mid=(a0+a1)/2, d0=addDays(L,(w-1)*7), d1=addDays(L,w*7-1);
-    const pet=el("path",{d:weekPetal(a0,a1),class:"wks post",id:"wks"+w,"pointer-events":"none"},g);
-    const [x0,y0]=P(R.moon[1]-6,a1),[x1,y1]=P(R.moon[1],a1);
-    el("line",{x1:f(x0),y1:f(y0),x2:f(x1),y2:f(y1),class:"wk","stroke-dasharray":"2 2","pointer-events":"none"},g);
-    const [tx,ty]=P(LBL.week,mid); const t=el("text",{x:f(tx),y:f(ty),class:"wklbl","text-anchor":"middle","dominant-baseline":"central","pointer-events":"none"},g); t.textContent=w;
-    const hit=el("path",{d:sector(R.moon[1]-8,LBL.week+12,a0,a1,1,0),class:"wkhit",tabindex:"0",role:"button","aria-label":`Week ${w}, past the due date`},g);
-    const warm=on=>pet.classList.toggle("hov",on);
-    hit.addEventListener("mouseenter",()=>warm(true)); hit.addEventListener("mouseleave",()=>warm(false));
-    hit.addEventListener("focus",()=>warm(true)); hit.addEventListener("blur",()=>warm(false));
-    tipOn(hit,()=>{ const [x,y]=P(R.moon[1],mid); return {x,y,html:`<b>Week ${w}</b>${fmtS(d0)} to ${fmt(d1)}<span>Past the due date, still within the birth window.${birthNote(d0,d1)}</span>`}; });
-  }
-}
-// once a birth is entered, the weeks are still counted, and each one says where it falls around the birth
-const dayOf=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
-function birthNote(d0,d1){
-  const b=BIRTH.birth; if(!b) return "";
-  const bd=dayOf(b), word=b>new Date()?ahead().toLowerCase():"born";
-  if(bd>=d0 && bd<=d1) return `<br>${word==="born"?"Born":"The "+word+" birth falls"} this week, on ${fmtS(bd)}.`;
-  if(d0>bd){ const n=Math.round((d0-bd)/DAY), w=Math.floor(n/7), r=n%7;
-    return `<br>After your birth: you were ${w?`${w} ${w===1?"week":"weeks"}`:""}${w&&r?" ":""}${r?`${r} ${r===1?"day":"days"}`:""} old as this week began.`; }
-  return "";
-}
-// where a moment falls on the wheel: by the weeks up to the due date, then past it at the pace of the last weeks
-function angOf(d){ const days=(d-lmp())/DAY; return days<=280 ? weekToAngle(days/7) : POST(Math.min(days-280,14)); }
-const DAY=86400000;
-// calendar days, so a daylight-saving change between the two dates does not shift the result
-const addDays=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n,d.getHours(),d.getMinutes(),d.getSeconds(),d.getMilliseconds());
-const fmt=d=>d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
-const fmtS=d=>d.toLocaleDateString(undefined,{month:"short",day:"numeric"});
-function lmp(){ return EDD ? addDays(EDD,-280) : null; }
-function todayMid(){ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); }
-function gaDays(){ if(!EDD) return null; return Math.round((todayMid()-lmp())/DAY); }
-
 // True full moons (Meeus, Astronomical Algorithms ch. 49), accurate to within minutes
 function fullMoonJDE(k){
   const T=k/1236.85, T2=T*T, T3=T2*T, T4=T3*T, D=Math.PI/180;
@@ -1095,318 +1291,168 @@ function fullMoons(from,to){
   for(let i=0;i<40;i++,k++){ const t=(fullMoonJDE(k)-2440587.5)*DAY - 69000; if(t>to.getTime()) break; if(t>=from.getTime()) out.push(new Date(t)); }
   return out;
 }
-const ORD=n=>n+(["th","st","nd","rd"][(n%100>10&&n%100<14)?0:(n%10<4?n%10:0)]||"th");
-function moonInfo(){
-  const L=lmp(); const inside=fullMoons(L,EDD);
-  const after=fullMoons(addDays(EDD,1),addDays(EDD,14));
-  return {L,inside,after};
-}
-const mtip=document.getElementById("moontip");
-// tap or click pins a card open; a mouse hover shows it while over; keyboard focus opens it too
-function tipOn(node, info){
-  node.addEventListener("click",e=>{ e.stopPropagation(); moonTip(node.classList.contains("open")?null:node,info()); });
-  node.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); moonTip(node,info()); } });
-  node.addEventListener("mouseenter",()=>{ if(!openMoon) moonTip(node,info(),true); });
-  node.addEventListener("mouseleave",()=>{ if(!openMoon) moonTip(null); });
-  node.addEventListener("focus",()=>{ if(node.matches(":focus-visible")) moonTip(node,info()); });
-  node.addEventListener("blur",()=>{ if(openMoon===node) moonTip(null); });
-}
-let openMoon=null;
-function moonTip(mk, info, hoverOnly){
-  if(openMoon) openMoon.classList.remove("open");
-  openMoon=null;
-  if(!mk){ mtip.classList.remove("on"); return; }
-  if(!hoverOnly){ openMoon=mk; mk.classList.add("open"); }
-  mtip.innerHTML=info.html;
-  mtip.classList.toggle("ringed",!!info.color);
-  if(info.color) mtip.style.setProperty("--tipc",`var(${info.color})`);
-  const box=mtip.parentElement, W=box.clientWidth, scale=W/(2*VB);
-  const px=(info.x+VB)*scale, py=(info.y+VB)*scale, w=mtip.offsetWidth, h=mtip.offsetHeight;
-  const left=Math.min(Math.max(px-w/2, 0), W-w);
-  const above=py-h-22*scale-6;
-  mtip.style.left=left+"px"; mtip.style.top=(above>=0 ? above : py+22*scale+6)+"px";
-  mtip.classList.add("on");
-}
-document.addEventListener("click",()=>{ if(openMoon) moonTip(null); });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape" && openMoon) moonTip(null); });
-window.addEventListener("resize",()=>moonTip(null));
 
-function drawMoons(){
-  const g=document.getElementById("moonband"), n=document.getElementById("needle");
-  if(!g) return; moonTip(null); g.innerHTML=""; n.innerHTML="";
-  const L0 = EDD ? lmp() : null;
-  // the birth window: 37 to 42 weeks, so the due date reads as the middle of a range rather than a single day
-  const postAng=POST, w0=weekToAngle(37), w1=postAng(14);
-  const winInfo=()=>{ const [x,y]=P(R.moon[1],(w0+w1)/2);
-    const range = EDD ? `${fmtS(addDays(EDD,-21))} to ${fmt(addDays(EDD,14))}` : "37 to 42 weeks";
-    return {x,y,html:`<b>Birth window</b>${range}<span>${EDD?"37 to 42 weeks. ":""}Babies arrive any time in this span, and only a few on the due date itself.</span>`}; };
-  // shaded up to the due date; its line runs on to 42 weeks, dashed, over the start of the birth quarter
-  const win=el("path",{d:sector(R.moon[0],R.moon[1],w0,270,1,0),class:"winband",tabindex:"0",role:"button","aria-label":"Birth window, 37 to 42 weeks"},g);
-  tipOn(win,winInfo);
-  const [wx,wy]=P(R.moon[1]+3,w0), [vx,vy]=P(R.moon[1]+3,270);
-  const wl=el("path",{d:`M${f(wx)} ${f(wy)} `+arc(R.moon[1]+3,w0,270,1),class:"winline"},g); tipOn(wl,winInfo);
-  const wl2=el("path",{d:`M${f(vx)} ${f(vy)} `+arc(R.moon[1]+3,270,w1,1),class:"winline","stroke-dasharray":"6 5"},g); tipOn(wl2,winInfo);
-  if(EDD){ const t=arcText(LBL.mark+13,252,288,`Birth window ${fmtS(addDays(EDD,-21))} to ${fmtS(addDays(EDD,14))}`,"winlbl",11,0.3,g); t.setAttribute("pointer-events","none"); }
-  // where each trimester begins, and where birth begins: a strong tick and a gold mark, labelled with its date once one is entered
-  [[0,1,"Your mother's last period",L0],[90,14,null,L0&&addDays(L0,91)],[180,28,null,L0&&addDays(L0,189)],[270,40,DUE?"Due":"Born",EDD]].forEach(([a,wk,name,d])=>{
-    const [x0,y0]=P(R.moon[0]-6,a),[x1,y1]=P(R.moon[1]+8,a);
-    el("line",{x1:f(x0),y1:f(y0),x2:f(x1),y2:f(y1),class:"trimark"},g);
-    const [gx,gy]=P(R.moon[1]+8,a), k=4.5;
-    el("path",{d:`M${f(gx)} ${f(gy-k)} L${f(gx+k)} ${f(gy)} L${f(gx)} ${f(gy+k)} L${f(gx-k)} ${f(gy)}Z`,class:"trigem"},g);
-    const text = d ? `${name || "Week "+wk} · ${name ? fmt(d) : fmtS(d)}` : `Week ${wk}`;
-    const t=arcText(LBL.mark,a-16,a+16,text,"datelbl",13,0.4,g); t.setAttribute("pointer-events","none");
-  });
-  document.querySelectorAll(".wks").forEach(p=>p.classList.remove("after","bornwk"));
-  drawBirthQuarter(g);
-  drawPostWeeks(g,postWeeks());
-  if(!EDD) return;
-  drawBirth(g);
-  const L=L0, {inside,after}=moonInfo(), ga=gaDays();
-  const ang=d=>weekToAngle(((d-L)/DAY)/7);
-  // cycles: from LMP to first full moon, between full moons, last full moon to due date
-  const edges=[0,...inside.map(ang),270];
-  for(let i=0;i<edges.length-1;i++){
-    const a0=edges[i], a1=edges[i+1]; if(a1-a0<0.3) continue;
-    const p=el("path",{d:sector(R.moon[0],R.moon[1],a0,a1,1,0), fill:"var(--moon)", opacity: i%2?0.6:0.35, "pointer-events":"none"}, g);
-    g.insertBefore(p, g.firstChild);   // shading lies beneath the window and the marks
-  }
-  const marker=(d,a,num,late)=>{
-    const [x,y]=P((R.moon[0]+R.moon[1])/2,a);
-    const prev=num>1?(inside[num-2]||null):null, gd=Math.round((d-L)/DAY);
-    const when = late ? `${Math.round((d-EDD)/DAY)} days after the due date` : `At ${Math.floor(gd/7)} weeks ${gd%7} ${gd%7===1?"day":"days"}`;
-    const gap = prev ? `${((d-prev)/DAY).toFixed(1)} days after the last` : "";
-    const mk=el("g",{class:"moonmk", tabindex:"0", role:"button", "aria-label":`${ORD(num)} full moon, ${fmt(d)}. ${when}.${gap?" "+gap+".":""}`},g);
-    el("circle",{cx:f(x),cy:f(y),r:17,fill:"var(--fullmoon)",stroke:"var(--moon)","stroke-width":3,"stroke-dasharray":late?"3 3":"none"},mk);
-    const t=el("text",{x:f(x),y:f(y),"text-anchor":"middle","dominant-baseline":"central","font-size":17,"font-weight":700,class:"lbl",fill:"var(--on-light)"},mk); t.textContent=num;
-    const info={x,y,html:`<b>${ORD(num)} full moon</b>${fmt(d)}<span>${when}${gap?"<br>"+gap:""}</span>`};
-    // a tap or click pins the card open; a mouse hover shows it while over the moon
-    mk.addEventListener("click",e=>{ e.stopPropagation(); moonTip(mk.classList.contains("open")?null:mk,info); });
-    mk.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); moonTip(mk,info); } });
-    mk.addEventListener("mouseenter",e=>{ if(!openMoon) moonTip(mk,info,true); });
-    mk.addEventListener("mouseleave",e=>{ if(!openMoon) moonTip(null); });
-    mk.addEventListener("focus",()=>{ if(mk.matches(":focus-visible")) moonTip(mk,info); }); mk.addEventListener("blur",()=>{ if(openMoon===mk) moonTip(null); });
-  };
-  const newMarker=(d,a,late)=>{
-    const [x,y]=P((R.moon[0]+R.moon[1])/2,a), gd=Math.round((d-L)/DAY);
-    const when = late ? `${Math.round((d-EDD)/DAY)} days after the due date` : `At ${Math.floor(gd/7)} weeks ${gd%7} ${gd%7===1?"day":"days"}`;
-    const mk=el("g",{class:"moonmk newmk", tabindex:"0", role:"button", "aria-label":`New moon, ${fmt(d)}. ${when}.`},g);
-    el("circle",{cx:f(x),cy:f(y),r:9,"stroke-dasharray":late?"2 2":"none"},mk);
-    const info={x,y,html:`<b>New moon</b>${fmt(d)}<span>${when}</span>`};
-    mk.addEventListener("click",e=>{ e.stopPropagation(); moonTip(mk.classList.contains("open")?null:mk,info); });
-    mk.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); moonTip(mk,info); } });
-    mk.addEventListener("mouseenter",()=>{ if(!openMoon) moonTip(mk,info,true); });
-    mk.addEventListener("mouseleave",()=>{ if(!openMoon) moonTip(null); });
-    mk.addEventListener("focus",()=>{ if(mk.matches(":focus-visible")) moonTip(mk,info); }); mk.addEventListener("blur",()=>{ if(openMoon===mk) moonTip(null); });
-  };
-  newMoons(L,EDD).forEach(d=>newMarker(d,ang(d),false));
-  // moons past the due date appear only when weeks past 40 are shown (a birth after the due date), and only within them
-  const pastDays=postWeeks()*7;
-  newMoons(addDays(EDD,1),addDays(EDD,14)).forEach(d=>{ if((d-EDD)/DAY<pastDays) newMarker(d,postAng((d-EDD)/DAY),true); });
-  inside.forEach((d,i)=>marker(d,ang(d),i+1,false));
-  after.forEach((d,i)=>{ const days=(d-EDD)/DAY; if(days<pastDays) marker(d,postAng(days),inside.length+i+1,true); });
-  if(ga!=null && ga>=0 && ga<=294){
-    const a=weekToAngle(Math.min(ga,280)/7);
-    const [x0,y0]=P(R.core[1]+2,a),[x1,y1]=P(R.moon[1]-3,a);
-    el("line",{x1:f(x0),y1:f(y0),x2:f(x1),y2:f(y1),stroke:"var(--today)","stroke-width":3,"stroke-linecap":"round","pointer-events":"none"},n);
-    el("circle",{cx:f(x1),cy:f(y1),r:7,fill:"var(--today)","pointer-events":"none"},n);
-  }
-}
-
-// The birth quarter of the time ring, after the weeks: labor, birth, and the first hour. Hours, not weeks,
-// so they are drawn as three spans; with birth details entered they carry the times.
-function drawBirthQuarter(g){
-  const b=BIRTH, born=b.birth, planned=born && born>new Date(), ces=b.kind==="cesarean";
-  // the three spans line up with the labor, birth, and first-hour petals; when weeks past 40 are
-  // shown, the spans begin after them and share what remains of the quarter
-  const k=postWeeks(), st=k?POST(7*k)+1:270, third=(360-st)/3, A=[st+0.4, st+third, st+2*third, 359.6];
-  const parts=[
-    ["Labor", A[0], A[1]-0.4, ()=>{
-      if(ces) return {t:"No labor", h:`<b>Labor</b>A cesarean${born?`, ${fmtDT(born)}`:""}.<span>The field links a cesarean with how you meet transitions. Telling the child you were what happened can help.</span>`};
-      if(b.labor && born) return {t:`Labor ${durShort(born-b.labor)}`, h:`<b>Labor${planned?` (${ahead().toLowerCase()})`:""}</b>${b.kind==="induce"?"Induction began":"Began"} ${fmtDT(b.labor)}<span>${dur(born-b.labor)} until the birth.</span>`};
-      if(b.labor) return {t:"Labor", h:`<b>Labor</b>${b.kind==="induce"?"Induction begins":"Began"} ${fmtDT(b.labor)}<span>Add the birth to see how long labor lasted.</span>`};
-      return {t:"Labor", h:`<b>Labor</b>The opening. If you know when your labor began, add it under Birth details below the wheel to see how long it lasted.`}; }],
-    ["Birth", A[1]+0.4, A[2]-0.4, ()=> born
-      ? {t:`Born ${fmtS(born)}${b.timeKnown?`, ${fmtT(born)}`:""}`, h:`<b>Your birth</b>${fmtDT(born)}<span>${whereB(born)}${b.kind!=="spont"?`<br>${KIND[b.kind]}.`:""}</span>`}
-      : {t:"Birth", h:`<b>Birth</b>Through the gate. Enter your birthday below the wheel to mark the day.`}],
-    ["First hour", A[2]+0.4, A[3], ()=> born
-      ? {t:"First hour", h:`<b>Your first hour</b>${b.timeKnown?`${fmtT(born)} to ${fmtT(new Date(born.getTime()+3600000))}`:fmt(born)}<span>Whatever it held, it can be met again now, with kindness.</span>`}
-      : {t:"First hour", h:`<b>The first hour</b>The welcome: skin to skin, or separation. Whatever it held, it can be met again now, with kindness.`}]];
-  parts.forEach(([name,a0,a1,info],i)=>{
-    const p=el("path",{d:sector(R.moon[0],R.moon[1],a0,a1,1,0),class:"bq",tabindex:"0",role:"button","aria-label":name},g);
-    if(born){ p.classList.add("set"); p.style.opacity = i===1 ? 0.95 : 0.72; }
-    tipOn(p,()=>{ const [x,y]=P(R.moon[1],(a0+a1)/2); return {x,y,html:info().h}; });
-    const t=arcText((R.moon[0]+R.moon[1])/2,a0+1,a1-1,info().t.toUpperCase(),"bqlbl"+(born?" set":""),9.5,1,g); t.setAttribute("pointer-events","none");
-  });
-}
-const durShort=ms=>{ const m=Math.round(ms/60000), h=Math.floor(m/60); return h?`${h} h${m%60?` ${m%60} m`:""}`:`${m} m`; };
-// The birth, and the start of labor, marked where they fall in the weeks, with the due date and the forty weeks left in place.
-function drawBirth(g){
-  const b=BIRTH, now=new Date();
-  const mark=(d,isLabor)=>{
-    const a=angOf(d), planned=d>now, [x,y]=P((R.moon[0]+R.moon[1])/2,a);
-    if(!isLabor){ const [x0,y0]=P(R.moon[0]-6,a),[x1,y1]=P(R.moon[1]+10,a);
-      el("line",{x1:f(x0),y1:f(y0),x2:f(x1),y2:f(y1),class:"bline"+(planned?" planned":"")},g); }
-    const mk=el("g",{class:"bmk"+(isLabor?" labor":"")+(planned?" planned":""),tabindex:"0",role:"button"},g);
-    el("circle",{cx:f(x),cy:f(y),r:isLabor?7:10},mk);
-    const head = isLabor ? (b.kind==="induce" ? (planned?"Induction planned":"Induction began") : "Labor began")
-                         : (planned ? (b.kind==="cesarean"?"Cesarean":b.kind==="induce"?"Planned birth, after induction":"Expected birth") : "Born");
-    const extra = !isLabor && b.labor && d>b.labor ? `<br>Labor ${dur(d-b.labor)}.` : "";
-    const html=`<b>${head}</b>${fmtDT(d)}<span>${whereB(d)}${extra}</span>`;
-    mk.setAttribute("aria-label",`${head}, ${fmtDT(d)}. ${whereB(d)}`);
-    tipOn(mk,()=>({x,y,html}));
-  };
-  // the start of labor gets its own mark when it falls on an earlier day than the birth
-  if(b.labor && b.kind!=="cesarean" && (!b.birth || b.birth-b.labor>12*3600000)) mark(b.labor,true);
-  if(b.birth){
-    mark(b.birth,false);
-    // the week the birth falls in, and every week after it, still counted to 42
-    const bd=dayOf(b.birth), L=lmp();
-    for(let w=1;w<=42;w++){ const d0=addDays(L,(w-1)*7), d1=addDays(L,w*7-1), p=document.getElementById("wks"+w); if(!p) continue;
-      if(bd>=d0 && bd<=d1) p.classList.add("bornwk"); else if(d0>bd) p.classList.add("after"); }
-  }
-}
-
-function phaseRange(s){
-  if(!EDD) return "";
-  const L=lmp(), ph=PHASES[s];
-  if(!ph.days) return BDAY ? "Born "+fmt(BDAY) : "";
-  return fmt(addDays(L,ph.days[0]))+" to "+fmt(addDays(L,ph.days[1]));
-}
-function monthRange(i){
-  if(!EDD || !CHILD[i].wk) return "";
-  const L=lmp(), w=CHILD[i].wk;
-  return fmtS(addDays(L,w[0]*7))+" – "+fmtS(addDays(L,w[1]*7-1));
-}
-function currentPhase(){
-  const ga=gaDays(); if(ga==null||ga<0) return null;
-  if(ga<=90) return 0; if(ga<=188) return 1; if(ga<=280) return 2; return 2;
-}
-function currentMonth(){
-  const ga=gaDays(); if(ga==null||ga<0||ga>294) return null;
-  const w=ga/7; for(let i=0;i<9;i++) if(w<B[i+1]) return i; return 8;
-}
 // the phase of the moon on a given day, by its age since the last new moon
 function moonPhaseName(d){
   const nm=newMoons(addDays(d,-32),d); if(!nm.length) return null;
   const age=(d-nm[nm.length-1])/DAY, k=Math.floor(((age/29.530588861)*8+0.5))%8;
   return ["new moon","waxing crescent moon","first quarter moon","waxing gibbous moon","full moon","waning gibbous moon","last quarter moon","waning crescent moon"][k];
 }
-function setStatus(){
-  const s=document.getElementById("status");
-  if(!BDAY){ s.textContent="Enter your birthday to see the full moons of your own time in the womb, and where your birth fell."; return; }
+function statusHTML(){
+  if(!BDAY) return "";
   const b=BIRTH, born=b.birth, n=fullMoons(lmp(),born).length, ph=moonPhaseName(born);
   let msg=`You were carried through <b>${n} full moons</b>, from about ${fmt(lmp())} to your birth on ${fmtDT(born)}.`;
   if(DUE) msg+=` You were born at ${gaText(born)}, ${vsDue(born)}.`;
   if(ph) msg+=` You were born under a <b>${ph}</b>.`;
   if(b.kind!=="spont") msg+=` <br>${KIND[b.kind]}.`;
   if(b.labor && b.kind!=="cesarean" && born>b.labor) msg+=` ${b.kind==="induce"?"Induction to birth":"Labor"}: ${dur(born-b.labor)}.`;
-  s.innerHTML=msg;
+  return msg;
+}
+function setStatus(){
+  const s=document.getElementById("status");
+  if(!BDAY){ s.textContent="Enter your birthday to count the full moons of your own time in the womb, and the moon you were born under."; return; }
+  s.innerHTML=statusHTML();
 }
 
 /* ---------- Panel ---------- */
-const panel=document.getElementById("panel"), tabs=document.getElementById("tabs");
-let sel={phase:null, ring:null, idx:null};
-// what the reading panel shows: "intro", "phase", "attach", or "pause"
-let view="intro";
+const panel=document.getElementById("panel"), tabs=document.getElementById("tabs"), rnav=document.getElementById("rightnav");
+// sel: what the wheel outlines. view: what the reading panel shows.
+let sel={kind:null, i:null, ring:null}, view="intro";
 function addTab(label, key, go){
   const b=document.createElement("button"); b.className="tab"; b.type="button"; b.setAttribute("role","tab");
   b.textContent=label; b.dataset.tab=key; b.addEventListener("click",go); tabs.appendChild(b);
 }
 addTab("How to read","intro",()=>showIntro());
-PHASES.forEach((ph,s)=>addTab(ph.short,String(s),()=>select(s,null,null,true)));
+addTab("Your beginning","beginning",()=>showBeginning(null,true));
+addTab("The seven rights","right",()=>showRight(sel.kind==="right"?sel.i:0,null,true));
 addTab("Attachment","attach",()=>showAttach(true));
-
+addTab("The body","body",()=>showBody(true));
+addTab("Your guide","guide",()=>showGuide(true));
+RIGHTS.forEach((r,i)=>{
+  const b=document.createElement("button"); b.type="button"; b.textContent=r.short; b.dataset.i=i;
+  b.addEventListener("click",()=>showRight(i,null,true)); rnav.appendChild(b);
+});
+function markTabs(){
+  [...tabs.children].forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===view ? "true":"false"));
+  rnav.hidden = view!=="right";
+  [...rnav.children].forEach(b=>b.setAttribute("aria-current", view==="right" && +b.dataset.i===sel.i ? "true":"false"));
+}
 function sw(v){ return `<span class="sw" style="background:var(${v})"></span>`; }
-function ul(items){ return "<ul>"+items.map(i=>`<li>${i}</li>`).join("")+"</ul>"; }
+function ul(items, cls){ return `<ul${cls?` class="${cls}"`:""}>`+items.map(i=>`<li>${i}</li>`).join("")+"</ul>"; }
 const isNarrow=()=>window.matchMedia("(max-width:900px)").matches;
-// any "Pause" or "attachment" link inside the panel
+// links inside the panel to the pause, the guide, the body, the attachment lens, and your beginning
 function wirePanelLinks(){
   panel.querySelectorAll("[data-pause]").forEach(b=>b.addEventListener("click",()=>showPause(true)));
   panel.querySelectorAll("[data-attach]").forEach(b=>b.addEventListener("click",()=>showAttach(true)));
+  panel.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",()=>showGuide(true)));
+  panel.querySelectorAll("[data-body]").forEach(b=>b.addEventListener("click",()=>showBody(true)));
+  panel.querySelectorAll("[data-begin]").forEach(b=>b.addEventListener("click",()=>showBeginning(b.dataset.begin===""?null:+b.dataset.begin,true)));
+  panel.querySelectorAll("[data-right]").forEach(b=>b.addEventListener("click",()=>showRight(+b.dataset.right,b.dataset.ring||null,true)));
 }
-function bringPanel(){
-  const r=panel.getBoundingClientRect();
-  if(isNarrow() || r.top<0 || r.top>window.innerHeight*0.7) panel.scrollIntoView({behavior:"smooth",block:"start"});
+function bringPanel(target){
+  const t=target||panel, r=t.getBoundingClientRect();
+  if(isNarrow() || r.top<0 || r.top>window.innerHeight*0.7) t.scrollIntoView({behavior:"smooth",block:"start"});
 }
+function setView(v, s){ view=v; sel=s||{kind:null,i:null,ring:null}; applySel(); markTabs(); }
 
 // the child you were at the center opens How to read, so it is seen without having to find the center
 const CENTER_HTML=`<div class="center-msg">
     <div class="eyebrow">Begin here</div>
     <h2>The child you were, at the center</h2>
-    <p>This mandala is centered on the child you were: you, before you had words, from your conception through your birth and your first hour. Every ring around that child exists to understand and hold them.</p>
-    <p>Pre- and perinatal psychology begins with a simple understanding: a baby is aware from the very beginning. You were taking in your world, and what you lived through in the womb, at birth, and in your first hours may have left imprints that you still feel: in how you meet closeness, effort, rest, and beginnings.</p>
-    <p>Those imprints are not a sentence. They are the first chapter of a story that kept being written, by every relationship and every repair since. Returning to that chapter as an adult, with the understanding you have now, is how many people find that old patterns soften.</p>
-    <p>This is the purpose of the mandala: to hold the whole of your beginning in one view, so that you can keep the child you were at the center, and hold them the way they needed to be held.</p>
-    <p class="sym">At the very center is the Seed of Life, a symbol of life beginning, growing, and expanding. Here it holds the place of the child you were, the seed from which your whole story unfolds.</p>
+    <p>This mandala is centered on the child you were: you, before you had words, and you as you grew. Every ring around that child exists to understand and hold them.</p>
+    <p>Pre- and perinatal psychology begins with a simple understanding: a baby is aware from the very beginning. What you lived through in the womb, at birth, and in your first hours may have left imprints that you still feel. And the same core questions, whether you are wanted, whether you can need, whether you can be yourself and be loved, came round again at each stage of growing up, and can come round again now.</p>
+    <p>Those imprints are not a sentence. They are layers of a story that kept being written, by every relationship and every repair since. Returning to them as an adult, with the understanding you have now, is how many people find that old patterns soften.</p>
+    <p class="sym">At the very center is the Seed of Life, a symbol of life beginning, growing, and expanding. Around it are the twelve questions of your beginning, the first layer of all.</p>
   </div>`;
-function showCenter(user){
-  showIntro();
-  if(user && isNarrow()) panel.scrollIntoView({behavior:"smooth",block:"start"});
-}
+function showCenter(user){ showIntro(); if(user && isNarrow()) panel.scrollIntoView({behavior:"smooth",block:"start"}); }
 function showIntro(){
-  view="intro"; sel={phase:null,ring:null,idx:null}; applySel(); markTabs();
+  setView("intro");
   panel.innerHTML=CENTER_HTML+`<div class="intro">
-    <h2>Reading from the center out</h2>
-    <p>Begin at the center with the child you were and move outward. Each ring is a layer within the same month of your beginning, so reading straight out from any petal shows, at that moment, what the child you were may have lived, how it may echo in you now, how your circle can hold you, and what a guide would bring up. Read this way, the rings are also layers of support: each one holds the one inside it.</p>
+    <h2>Reading the wheel</h2>
+    <p>Around the wheel are seven rights, the psycho-emotional needs of growing up, after Robin Grille's developmental rites of passage. Each is a passage every child goes through, from the right to exist, which begins in the womb, to the rights to a voice, a calling, and a self of one's own in the early twenties. The ages overlap: these are layers laid down over one another, not steps left behind.</p>
+    <p>Read straight out from the center along any right, and you move from what the child needed, to what can happen when that need goes unmet, to how it can show in you now, to what heals it, to the belief it can open into.</p>
     <ul class="legend">
-      ${["child","mother","circle","support","practice"].map(k=>`<li>${sw(RINGS[k].color)}<div><b>${RINGS[k].name}</b>${RINGS[k].about}${RINGS[k].more||""}</div></li>`).join("")}
-      <li>${sw("--moon")}<div><b>The time wheel</b>The timekeeper of the mandala. Its inner band marks each month as a span of color, lined up with the rings, and it counts the trimesters and the forty weeks. Once you enter your birthday, it marks the full and new moons of the months you were carried, and the day you were born.</div></li>
+      ${["q","need","imp","now","nut","bel"].map(k=>`<li>${sw(RINGS[k].color)}<div><b>${RINGS[k].name}</b>${RINGS[k].about}</div></li>`).join("")}
     </ul>
-    <p>The wheel begins at the top with the first day of your mother's last period, where pregnancy dating starts, and moves clockwise through the three trimesters. The last quarter is your birth, which returns to the top where your journey began.</p>
-    <p>Beside the four quarters, the Attachment tab sets the four adult attachment styles against the wheel, with the months the field links to each.</p>
-    <p class="hint">Choose any petal or ring on the mandala, or a quarter above, to open it. Go slowly, and use the Pause whenever you need it.</p>
+    <p>You do not need to go in order. Come in wherever you recognize yourself, a belief like "I must do it alone," or a question like "Am I wanted?", and follow it inward to its roots or outward to what heals it. The Attachment tab sets the four adult attachment styles beside the wheel, The body explains why this work goes through the body and how to do it safely, and Your guide describes who can walk with you.</p>
+    <p class="hint">Choose any ring or petal on the mandala to open it. Go slowly, and use the Pause whenever you need it.</p>
   </div>`;
 }
 
-function select(phase, ring, idx, user){
-  view="phase"; sel={phase,ring,idx}; applySel(); markTabs();
-  const ph=PHASES[phase], s=phase;
-  const range=phaseRange(s);
-  const hl=(k,i)=> (ring===k && (idx==null||idx===i))?" hl":"";
-  const months=[s*3,s*3+1,s*3+2].map(i=>{
-    const c=CHILD[i], y=YOU[i], g=GUIDE[i], r=monthRange(i), isSel=(idx===i);
-    return `<article class="mcard${isSel?" cur":""}" id="mo-${i}">
-      <div class="mt">${c.t}<span>${c.w}${r?" · "+r:""}</span></div>
-      <div class="lane l-child${hl("child",i)}"><h4>${sw("--child")}The child you were</h4><p>${c.grow}</p><p class="take">${c.take}</p></div>
-      <div class="lane l-mother${hl("mother",i)}"><h4>${sw("--mother")}You, now</h4><p><b>How it may echo.</b> ${y.echo}</p><p><b>In the body.</b> ${y.body}</p><p><b>Exploring your story.</b> ${y.explore}</p></div>
-      <div class="lane l-circle${hl("circle",i)}"><h4>${sw("--circle")}Your circle of support</h4>
-        <p class="about">How each layer can be supported this month.</p>
-        <p><b>Supporting you.</b> ${CIRCLE[i].you}</p><p><b>Holding the child you were.</b> ${CIRCLE[i].child}</p><p><b>Supporting the supporters.</b> ${CIRCLE[i].holders}</p></div>
-      <div class="lane l-edu${hl("support",i)}"><h4>${sw("--support")}The guide</h4>
-        <p><b>Possible imprints.</b> ${g.imp}</p>
-        <p class="herq"><span>The child's question</span>${QUESTIONS[i]}</p>
-        <p class="nowq"><span>How it can sound now</span>${NOW_Q[i]}</p>
-        <p><b>Repair.</b> <i>${REPAIR[i][0]}.</i> ${REPAIR[i][1]}</p>
-        <p><b>Quick takeaway.</b> ${g.take}</p>
+// Your beginning: the twelve questions, from conception through the first hour, gathered in four
+function showBeginning(q, user){
+  setView("beginning", q!=null ? {kind:"q",i:q,ring:null} : null);
+  const st=statusHTML();
+  const card=i=>{
+    const c=CHILD[i], y=YOU[i], g=GUIDE[i], r=monthRange(i), cr=CIRCLE[i];
+    const when = c.wk ? `May have begun around ${c.w.toLowerCase()}${r?" · "+r:""}` : c.t;
+    return `<details class="qcard"${q===i?" open":""} id="q-${i}"><summary><span class="qn">${STATIONS[i]}</span><span class="qq">${QUESTIONS[i]}</span><span class="qw">${when}</span></summary>
+      <div class="qbody">
+      <div class="lane l-child"><h4>${sw("--child")}The child you were</h4><p>${c.grow}</p><p class="take">${c.take}</p></div>
+      <div class="lane l-mother"><h4>${sw("--support")}You, now</h4><p class="nowq"><span>How the question can sound now</span>${NOW_Q[i]}</p><p><b>How it may echo.</b> ${y.echo}</p><p><b>In the body.</b> ${y.body}</p><p><b>Exploring your story.</b> ${y.explore}</p></div>
+      <div class="lane l-edu"><h4>${sw("--circle")}The imprint</h4><p>${g.imp}</p><p><b>Repair.</b> <i>${REPAIR[i][0]}.</i> ${REPAIR[i][1]}</p><p><b>Quick takeaway.</b> ${g.take}</p>
         ${g.attach?`<p class="attachnote"><b>Attachment.</b> ${g.attach} <button type="button" class="pauselink" data-attach>Open the attachment lens</button></p>`:""}
-        <div class="deeper"><b>Going deeper</b><ul>${g.deep.map(d=>`<li>${d}</li>`).join("")}</ul></div>
-        <p class="src">${g.src}</p></div>
-    </article>`;
-  }).join("");
-  const pr=PRACTICE[s];
+        <div class="deeper"><b>Going deeper</b><ul>${g.deep.map(d=>`<li>${d}</li>`).join("")}</ul></div><p class="src">${g.src}</p></div>
+      <div class="lane l-circle"><h4>${sw("--mother")}Support</h4><p><b>For you.</b> ${cr.you}</p><p><b>For the child you were.</b> ${cr.child}</p><p><b>For the people who hold you.</b> ${cr.holders}</p></div>
+      </div></details>`;
+  };
   panel.innerHTML=`
-    <div class="phasehead"><h2>${ph.name}</h2>
-      <div class="meta">${ph.sub}${range?" · "+range:""}</div>
-      <p>${ph.intro}</p></div>
-    ${months}
-    <div class="ring${ring==="practice"?" hl":""}" id="r-practice"><h3>${sw("--practice")}${RINGS.practice.name}</h3>
-      <p class="about">For the whole ${s<3?"trimester":"birth"}. These are the tools a parent might use with a baby, turned toward the child you were. Each one is also a repair: whatever happened, it is not too late.</p>
-      ${ul(pr.items)}<p class="src">${pr.src}</p>
-      <h4>Going further with your story</h4>
-      <p class="about">Deeper explorations, to take up in your own time and at your own pace. Stop whenever you need to.</p>
-      ${ul(HEALING[s].items)}<p class="src">${HEALING[s].src}</p>
-      <p class="support"><b>If more support is needed.</b> ${HEALING_SUPPORT}</p>
-      <button type="button" class="pauselink" data-pause>Pause, and come back to now</button></div>`;
+    <div class="phasehead"><div class="eyebrow">The center of the wheel</div><h2>Your beginning</h2>
+      <div class="meta">Conception, the womb, birth, and the first hour</div>
+      <p>The earliest layer of the Right to Exist: twelve questions that may have begun to emerge before and around your birth. They are the core first imprint, and the same twelve as The Pregnancy and Birth Mandala. Each may have begun then and come round again later, so open whichever you recognize.</p></div>
+    ${st?`<p class="support">${st}</p>`:`<p class="hint">Enter your birthday below the wheel to see the dates of each station and the moon you were born under.</p>`}
+    ${GROUPS.map((gr,k)=>`<section class="group"><h3>${gr.name} <small>${gr.sub}</small></h3><p class="about">${gr.intro}</p>
+      ${[k*3,k*3+1,k*3+2].map(card).join("")}
+      <details class="qcard more"><summary><span class="qn">Practices and going further</span><span class="qw">for ${gr.name.toLowerCase()}</span></summary><div class="qbody">
+        ${ul(PRACTICE[k].items)}<p class="src">${PRACTICE[k].src}</p>
+        <h4>Going further with your story</h4>${ul(HEALING[k].items)}<p class="src">${HEALING[k].src}</p></div></details></section>`).join("")}
+    <p class="support"><b>If more support is needed.</b> ${HEALING_SUPPORT} <button type="button" class="pauselink" data-guide>Find your guide</button></p>
+    <button type="button" class="btn" data-right="0">Go on to the Right to Exist</button>`;
   wirePanelLinks();
-  const target = idx!=null ? document.getElementById("mo-"+idx) : ring==="practice" ? document.getElementById("r-practice") : null;
-  if(!user){} else if(target && !isNarrow()){
-    const rect=target.getBoundingClientRect(); if(rect.top<0||rect.top>window.innerHeight*0.7) target.scrollIntoView({behavior:"smooth",block:"start"});
-  } else if(isNarrow()){ (target||panel).scrollIntoView({behavior:"smooth",block:"start"}); }
+  panel.querySelectorAll(".qcard:not(.more)").forEach(d=>d.addEventListener("toggle",()=>{ if(d.open){ sel={kind:"q",i:+d.id.slice(2),ring:null}; applySel(); } }));
+  if(user) bringPanel(q!=null ? document.getElementById("q-"+q) : null);
 }
 
-// The attachment lens: a compass of the two dimensions, then each style with the months the field links to it
+// One right: the need, the imprint and its decision, how it shows now, gathering the theme, the nutrients,
+// what tips the scale, practices and why they help, the belief it opens into, and when to go deeper
+function showRight(i, ring, user){
+  setView("right", {kind:"right",i,ring});
+  const r=RIGHTS[i], hl=k=>ring===k?" hl":"";
+  const prev=(i+RIGHTS.length-1)%RIGHTS.length, next=(i+1)%RIGHTS.length;
+  panel.innerHTML=`
+    <div class="phasehead"><div class="eyebrow">${r.theme}</div><h2>${r.name}</h2>
+      <div class="meta">${r.ages}</div><p>${r.intro}</p></div>
+    ${i===0?`<button type="button" class="btn" data-begin="">Open the twelve questions of your beginning</button>`:""}
+    <div class="ring${hl("need")}" id="rr-need"><h3>${sw("--mother")}The need</h3>${ul(r.need.items)}</div>
+    <div class="ring${hl("imp")}" id="rr-imp"><h3>${sw("--circle")}The imprint</h3><p>${r.imp.wound}</p>
+      <h4>The decision it can leave</h4>${ul(r.imp.beliefs,"beliefs")}
+      <p class="about">Before words, an imprint is a felt state. As language arrives it can settle into a belief, a decision about how life is, which then colors everything after (Emerson).</p></div>
+    <div class="ring${hl("now")}" id="rr-now"><h3>${sw("--support")}In you now</h3><p>${r.now.text}</p><p><b>In the body.</b> ${r.now.body} <button type="button" class="pauselink" data-body>About your window</button></p>
+      ${r.attach?`<p class="attachnote"><b>Attachment.</b> ${r.attach} <button type="button" class="pauselink" data-attach>Open the attachment lens</button></p>`:""}</div>
+    <div class="ring"><h3>Gather the theme</h3><p>${r.gather}</p>
+      <p class="about">Imprints gather by theme across a life, so a single moment is rarely the whole story. Listing the moments that echo one another shows the pattern and its earliest root, and the connection itself begins to loosen it (Emerson).</p></div>
+    <div class="ring${hl("nut")}" id="rr-nut"><h3>${sw("--practice")}Healing nutrients</h3>${ul(r.nut.items)}
+      <h4>Counteraction</h4><p>${r.counter}</p><h4>Proaction</h4><p>${r.pro}</p>
+      <p class="about">Counteraction is the opposite of the old habit; proaction is a step toward what you actually need (Emerson).</p></div>
+    <div class="ring"><h3>What tips the scale</h3>
+      <ul><li><b>One relationship.</b> ${r.scale.rel}</li><li><b>One skill.</b> ${r.scale.skill}</li><li><b>One good experience.</b> ${r.scale.good}</li></ul>
+      <p class="about">Resilience is built from relationships, skills, and good experiences, and it can be strengthened at any age. The single most common finding is at least one stable, supportive relationship (Center on the Developing Child, Harvard).</p></div>
+    <div class="ring" id="r-practice"><h3>Practices</h3>
+      <ul class="practices">${r.practices.map(p=>`<li><b>${p.name}.</b> ${p.how}<span class="why"><b>Why it helps.</b> ${p.why}</span></li>`).join("")}</ul>
+      <p class="about">Each practice works from the body up, changing the chemistry of feeling, not just the thought (Pert). Walk them inside your window: touch, come back, repeat.</p></div>
+    <div class="ring${hl("bel")}" id="rr-bel"><h3>${sw("--heal")}The belief it opens into</h3>${ul(r.bel.beliefs,"beliefs good")}</div>
+    <div class="ring"><h3>When to go deeper</h3><p>${r.deeper}</p>
+      <p><button type="button" class="pauselink" data-guide>Find your guide</button> · <button type="button" class="pauselink" data-pause>Pause, and come back to now</button></p></div>
+    <p class="src">After Grille, Parenting for a Peaceful World and Inner Child Journeys (2019); Emerson (2002); National Scientific Council on the Developing Child (2015); Pert (1997)</p>
+    <div class="rnext"><button type="button" class="btn" data-right="${prev}">← ${RIGHTS[prev].short}</button><button type="button" class="btn" data-right="${next}">${i===RIGHTS.length-1?"Back to the beginning":RIGHTS[next].short} →</button></div>`;
+  wirePanelLinks();
+  const target = ring ? document.getElementById("rr-"+ring) : null;
+  if(user) bringPanel(target);
+}
+
+// The attachment lens: a compass of the two dimensions, then each style with the rights and questions the field links to it
 function showAttach(user){
-  view="attach"; sel={phase:null,ring:null,idx:null}; applySel(); markTabs();
+  setView("attach");
   const A=ATTACH, st=k=>A.styles.find(x=>x.key===k);
   const q=k=>`<button type="button" class="q-${k}" data-go="${k}"><b>${st(k).name}</b><span>${st(k).pos}</span></button>`;
   panel.innerHTML=`
@@ -1423,8 +1469,8 @@ function showAttach(user){
       <h3>${x.name}<small>${x.pos}</small></h3>
       <p><b>How it can feel.</b> ${x.feel}</p>
       <p><b>Where it tends to begin.</b> ${x.roots}</p>
-      <h4>Months the field links to it</h4>
-      <div class="chips">${x.months.map(i=>`<button type="button" data-m="${i}">${CHILD[i].t} · ${QUESTIONS[i]}</button>`).join("")}</div>
+      <h4>Where the field links it on the wheel</h4>
+      <div class="chips">${x.rights.map(i=>`<button type="button" data-right="${i}" data-ring="now">${RIGHTS[i].name}</button>`).join("")}${x.qs.map(i=>`<button type="button" data-begin="${i}">${STATIONS[i]} · ${QUESTIONS[i]}</button>`).join("")}</div>
       <p><b>What tends to help.</b> ${x.helps}</p></div>`; }).join("")}
     <div class="ring"><h3>A reflection, not a test</h3>
       <p class="about">Finish each line in writing, without thinking too long. Notice which style your answers lean toward. Most people mix more than one, and a style can shift from one relationship to another.</p>
@@ -1433,45 +1479,39 @@ function showAttach(user){
       <button type="button" class="pauselink" data-pause>Pause, and come back to now</button></div>
     <p class="src">Bowlby (1969); Ainsworth et al. (1978); Main &amp; Solomon (1990); Bartholomew &amp; Horowitz (1991); Brennan, Clark &amp; Shaver (1998); Roisman et al. (2002); Siegel &amp; Hartzell (2003)</p>`;
   panel.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>document.getElementById("st-"+b.dataset.go).scrollIntoView({behavior:"smooth",block:"start"})));
-  panel.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{ const i=+b.dataset.m; select(Math.floor(i/3),"support",i,true); }));
   wirePanelLinks();
   if(user) bringPanel();
 }
+function showBody(user){ setView("body"); panel.innerHTML=BODY_HTML; wirePanelLinks(); if(user) bringPanel(); }
+function showGuide(user){ setView("guide"); panel.innerHTML=GUIDE_HTML; wirePanelLinks(); if(user) bringPanel(); }
 
-// The pause: grounding, always one tap away from the header
+// The pause: a check-in and grounding, always one tap away from the header
 function showPause(user){
-  view="pause"; sel={phase:null,ring:null,idx:null}; applySel(); markTabs();
+  setView("pause");
   panel.innerHTML=PAUSE_HTML+`<button type="button" class="btn" id="pauseback" style="justify-self:start;margin-top:14px">I am ready to go on</button>`;
+  const ci=document.getElementById("checkin"), out=document.getElementById("checkin-out");
+  Object.keys(CHECKIN).forEach(k=>{ const c=CHECKIN[k], b=document.createElement("button"); b.type="button"; b.className="ck-"+k;
+    b.innerHTML=`<b>${c.label}</b><span>${c.sub}</span>`;
+    b.addEventListener("click",()=>{ [...ci.children].forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+      out.innerHTML=`<div class="ring"><h3>${c.title}</h3>${ul(c.items)}</div>`; });
+    b.setAttribute("aria-pressed","false"); ci.appendChild(b); });
   document.getElementById("pauseback").addEventListener("click",()=>showIntro());
   if(user) bringPanel();
 }
 document.getElementById("pausebtn").addEventListener("click",()=>showPause(true));
 
-function markTabs(){
-  [...tabs.children].forEach(b=>{ const t=b.dataset.tab;
-    b.setAttribute("aria-selected", (view==="phase" ? t===String(sel.phase) : t===view) ? "true":"false"); });
-}
 function applySel(){
   cells.forEach(c=>{
-    const p=+c.dataset.phase, r=c.dataset.ring, i=c.dataset.idx!=null?+c.dataset.idx:null;
-    let on=false;
-    if(sel.idx!=null) on = (i===sel.idx);
-    else if(sel.ring!=null) on = (p===sel.phase && r===sel.ring);
+    const on = sel.kind==="q" ? c.dataset.slice==="q"+sel.i
+      : sel.kind==="right" ? c.dataset.slice==="r"+sel.i && (!sel.ring || c.dataset.ring===sel.ring) : false;
     c.classList.toggle("sel", on);
   });
   const so=document.getElementById("selOutline");
   if(!so) return; so.innerHTML="";
-  // a month: one thin line around its whole slice, from the child out through the guide
-  if(sel.idx!=null){ const a0=sel.idx*30+GAP/2, a1=(sel.idx+1)*30-GAP/2;
-    el("path",{d:sector(R.child[0]-3,R.support[1]+3,a0,a1,1,CURVE)},so); return; }
-  cells.forEach(c=>{ if(c.classList.contains("sel") && c.getAttribute("d")) el("path",{d:c.getAttribute("d")},so); });
-}
-// hovering any cell lights its whole slice, from the child out to the practice petal that lines up with it
-function hover(phase, idx, ring, cell){
-  if(phase==null){ svg.classList.remove("dimming"); cells.forEach(c=>c.classList.remove("off")); return; }
-  svg.classList.add("dimming");
-  const slice = cell ? cell.dataset.slice : String(idx);
-  cells.forEach(c=>c.classList.toggle("off", c.dataset.slice!==slice));
+  if(sel.kind==="right"){ const [a0,a1]=rA(sel.i);
+    el("path",{d:sector(R.need[0]-3,R.nut[1]+3,a0+GAP/2,a1-GAP/2,1,CURVE)},so); }
+  else if(sel.kind==="q"){ const a0=sel.i*30, a1=a0+30;
+    el("path",{d:sector(R.q[0]-2,R.q[1]+3,a0+GAP/2,a1-GAP/2,1,CURVE)},so); }
 }
 
 /* light and dark switch */
@@ -1485,14 +1525,14 @@ syncTheme();
 
 /* ring key */
 const rk=document.getElementById("ringkey");
-["child","mother","circle","support","practice"].forEach(k=>{
+["q","need","imp","now","nut","bel"].forEach(k=>{
   const b=document.createElement("button"); b.type="button"; b.innerHTML=sw(RINGS[k].color)+RINGS[k].name;
-  b.addEventListener("click",()=>{ const s = sel.phase!=null?sel.phase:0; select(s,k,null,true); });
+  b.addEventListener("click",()=>{ if(k==="q") showBeginning(null,true); else showRight(sel.kind==="right"?sel.i:0,k,true); });
   rk.appendChild(b);
 });
 
 /* your birthday, and what you know of your birth. Kept under rm- keys, apart from The Pregnancy and Birth Mandala's
-   pm- keys, since the two may be served from the same site and share one browser storage box. */
+   pm- keys, since the two are served from the same site and share one browser storage box. */
 const form=document.getElementById("dateform"), inp=document.getElementById("bday");
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 const parseD=v=>{ if(!v) return null; const [y,mo,d]=v.split("-").map(Number); return new Date(y,mo-1,d); };
@@ -1504,8 +1544,8 @@ function rebuild(){
     BIRTH.birth=new Date(BDAY.getFullYear(),BDAY.getMonth(),BDAY.getDate(),h,m); BIRTH.timeKnown=!!BTIME; }
   else { BIRTH.birth=null; BIRTH.timeKnown=false; }
   document.getElementById("clear").hidden=!BDAY;
-  drawMoons(); setStatus();
-  if(view==="phase" && sel.phase!=null) select(sel.phase,sel.ring,sel.idx);
+  setStatus();
+  if(view==="beginning") showBeginning(sel.kind==="q"?sel.i:null,false);
 }
 function setBday(v, save){
   BDAY=parseD(v);
@@ -1536,7 +1576,7 @@ bkind.addEventListener("change",syncBirthForm);
 document.getElementById("bsave").addEventListener("click",()=>{
   const k=bkind.value;
   setBirthDetails({kind:k, labor:k!=="cesarean"&&blabor.value?new Date(blabor.value):null, due:parseD(bdue.value), time:btime.value},true);
-  if(!BDAY) document.getElementById("status").innerHTML+=" <br>Add your birthday above to place your birth on the wheel.";
+  if(!BDAY) document.getElementById("status").innerHTML+=" <br>Add your birthday above to count your moons.";
 });
 document.getElementById("bclear").addEventListener("click",()=>setBirthDetails({kind:"spont",labor:null,due:null,time:""},true));
 
